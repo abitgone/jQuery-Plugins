@@ -10,17 +10,29 @@ I shall improve this README file as time goes by.
 
 ClassToggle toggles, on a target element, a single class on and off or between two classes.
 
-At its most basic, you need two elements - your trigger and your target element. Your trigger element - usually an anchor, button or something else - must have some of the following attributes:
-
-*	**`href`** *or* **`data-classtoggle-target`**
-	So the trigger knows what to change the classes on
+As a bare minimum, your trigger element must have the following attributes:
+ 
+- 	**href** (for anchors) or **data-classtoggle-target**  
+	This specifies the target element
 	
-*	**`data-classtoggle-class`**
-	The class which will be toggled on the target
+-	**data-classtoggle-class**  
+	The class to be toggled, on and off, by the trigger
+ 	
+Additionally, you may specify the following additional class names:
 
-*	**`data-classtoggle-altclass`** *(Optional)*
-	The class which will be alternated with the main class
+-	**data-classtoggle-altclass**  
+	The class you'd like to alternate with the main class. For example, data-classtoggle-class="Red"
+	and data-classtoggle-altclass="Green" will alternate the .Red and .Green classes each time the
+	trigger element is activated.
+
+-	**data-classtoggle-trigger-activeclass**  
+	Specifies a class to be added to the trigger when it activates the ClassToggle.
 	
+-	**data-classtoggle-trigger-selector**
+	Specifies a jQuery selector which data-classtoggle-trigger-activeclass will be toggled on when
+	the trigger elements are activated. Useful if you have more than one trigger which could
+	trigger the target element.
+ 
 ### Examples
 
 **Toggling a single class using `data-classtoggle-class` only**
@@ -43,4 +55,6 @@ Using the code below:
 	<div id="ToggleTarget" class="Red">Target</div>
 ```
 
-The anchor link will cause the target element to toggle between `.Red` and `.Green`.
+[More examples][ct_examples] are avaialable.
+
+[ct_examples]: http://abitgone.github.com/jQuery-Plugins/ClassToggle
