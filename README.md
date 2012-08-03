@@ -33,28 +33,4 @@ Additionally, you may specify the following additional class names:
 	the trigger elements are activated. Useful if you have more than one trigger which could
 	trigger the target element.
  
-### Examples
-
-**Toggling a single class using `data-classtoggle-class` only**
-
-Using the code below:
-
-```html
-	<a href="#TargetElement" data-classtoggle-class="Highlighted">Turn .Highlighted on and off</a>
-	<div id="ToggleTarget" class="Red">Target</div>
-```
-
-The anchor link will cause the target element to turn the class `.Highlighed` on and off.
-
-**Toggling between two classes using `data-classtoggle-class` and `data-classtoggle-classalt`**
-
-Using the code below:
-
-```html
-	<a href="#TargetElement" data-classtoggle-class="Red" data-classtoggle-altclass="Green">Toggle between Red and Green</a>
-	<div id="ToggleTarget" class="Red">Target</div>
-```
-
-[More examples][ct_examples] are avaialable.
-
-[ct_examples]: http://abitgone.github.com/jQuery-Plugins/ClassToggle
+[Examples](http://abitgone.github.com/jQuery-Plugins/ClassToggle) are avaialable.
