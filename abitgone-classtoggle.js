@@ -73,10 +73,9 @@
 			
 			var targetMain = $target.hasClass(tcClass);	
 			var targetAlt = tcClassAlt == undefined ? false : $target.hasClass(tcClassAlt);
-						
+										
 			if (tcClassAlt == undefined) {
 				$target.toggleClass(tcClass);
-				return;
 			} else {
 				if((targetMain && targetAlt) || (!targetMain && !targetAlt)) {
 					$target.toggleClass(tcClassAlt);
@@ -88,9 +87,9 @@
 			
 			if (tcTriggerClass == undefined) return;
 
-			var $triggers;			
+			var $triggers;		
 			if (tcTriggerSelector == undefined) {
-				$triggers = sender;
+				$triggers = $sender;
 			} else {
 				$triggers = $(tcTriggerSelector)
 			}
