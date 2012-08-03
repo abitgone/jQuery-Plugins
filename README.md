@@ -2,7 +2,7 @@
 
 These jQuery plugins have been created to ease the pain that some front-end designers feel when they're trying to implement basic features with little or no JavaScript or jQuery experience.
 
-I plan to add plugins to this repository over time that only require HTML code and the inclusion of the script in question, following the same kind of principles as the Twitter Bootstrap extensions, in so far that no coding experience should be required in order to make things work.
+I plan to add plugins to this repository over time that only require HTML code, data-* attributes, and the inclusion of the script in question, following the same kind of principles as the Twitter Bootstrap extensions, in so far that no coding experience should be required in order to make things work.
 
 I shall improve this README file as time goes by.
 
@@ -33,4 +33,4 @@ Additionally, you may specify the following additional class names:
 	the trigger elements are activated. Useful if you have more than one trigger which could
 	trigger the target element.
  
-[Examples](http://abitgone.github.com/jQuery-Plugins/ClassToggle) are avaialable.
+[Some examples](http://abitgone.github.com/jQuery-Plugins/ClassToggle) are available.
