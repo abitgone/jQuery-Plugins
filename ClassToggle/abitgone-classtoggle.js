@@ -55,22 +55,20 @@
 		
 		classToggle: function (option) {
 			
-			var sender = event.target ? event.target : window.event.srcElement;
-			$sender = $(sender);
-							
+			$sender = $(event.target);
+					
 			var tcClass = $sender.attr('data-classtoggle-class');
 			var tcClassAlt = $sender.attr('data-classtoggle-altclass');
 			var tcTriggerClass = $sender.attr('data-classtoggle-trigger-activeclass');
 			var tcTriggerSelector = $sender.attr('data-classtoggle-trigger-selector');
 			var target = $sender.attr('data-classtoggle-target');
-			
 			if (target == undefined) {
-				target = $sender.attr('href') == undefined ? $sender.attr('href') : $sender[0].href;
+				target = $sender.attr('href');
 				target = target.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
 			}
 			if (target == undefined) return;
 			var $target = $(target);
-
+						
 			if (tcClass == undefined || $target == undefined) return;
 			
 			var targetMain = $target.hasClass(tcClass);	
