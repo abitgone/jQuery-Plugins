@@ -31,11 +31,9 @@
     For more information on how to use this plugin, visit http://abitgone.github.com/jQuery-Plugins/ClassToggle
     
 */
-
 !function (jQuery) {
     
     // ClassToggle Public Class Definition
-    
     var ClassToggle = function (element, options) {
         
         this.$element = $(element)
@@ -55,15 +53,17 @@
         
         classToggle: function (option) {
             
-            $sender = $(event.target);
+            var sender = typeof(event) != 'undefined' ? (event ? event.target : window.event.srcElement) : this.options.sender;
+            var $sender = $(sender);
             
-            var tcClass = $sender.attr('data-classtoggle-class');
-            var tcClassAlt = $sender.attr('data-classtoggle-altclass');
-            var tcTriggerClass = $sender.attr('data-classtoggle-trigger-activeclass');
-            var tcTriggerSelector = $sender.attr('data-classtoggle-trigger-selector');
-            var target = $sender.attr('data-classtoggle-target');
+            var tcClass = this.options.classtoggleClass;
+            var tcClassAlt = this.options.classtoggleAltclass;
+            var tcTriggerClass = this.options.classtoggleTriggerActiveclass;
+            var tcTriggerSelector = this.options.classtoggleTriggerSelector;
+            var target = this.options.classtoggleTarget;
+            
             if (target == undefined) {
-                target = $sender.attr('href');
+                target = $sender.attr('href') == undefined ? $sender.attr('href') : $sender[0].href;
                 target = target.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
             }
             if (target == undefined) return;
@@ -117,15 +117,16 @@
     
     // ClassToggle Data-Api
     $(function (){
-        $('body').on('click.classtoggle.data-api', '[data-classtoggle-class]', function (e) {
-            var $this = $(this);
-            var href;
-            var target = $this.attr('data-classtoggle-target') ||
-                         (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
-            var option = $(target).data('classToggle') ? 'classToggle' : $this.data();
-            e.preventDefault();
+        $('body').on('click.classtoggle.data-api', '[data-classtoggle-class]', function (e) { 
+            var $this = $(this)
+              , href
+              , target = $this.attr('data-classtoggle-target')
+                || e.preventDefault()
+                || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // Strip for IE7
+              , option = $(target).data('classToggle') ? 'classToggle' : $this.data();
+            option.sender = e.target;
             $(target).classToggle(option);
-        })
+        });
     });
     
 }(window.jQuery);
