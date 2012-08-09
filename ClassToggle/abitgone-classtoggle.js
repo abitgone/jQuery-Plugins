@@ -10,7 +10,7 @@
     -   **href** (for anchors) or **data-classtoggle-target**  
         This specifies the target element
     
-    -    **data-classtoggle-class**  
+    -   **data-classtoggle-class**  
         The class to be toggled, on and off, by the trigger
     
     Additionally, you may specify the following additional class names:
@@ -53,8 +53,7 @@
         
         classToggle: function (option) {
             
-            var sender = typeof(event) != 'undefined' ? (event ? event.target : window.event.srcElement) : this.options.sender;
-            var $sender = $(sender);
+            $sender = $(this.options.sender);
             
             var tcClass = this.options.classtoggleClass;
             var tcClassAlt = this.options.classtoggleAltclass;
