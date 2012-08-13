@@ -16,20 +16,41 @@
     Additionally, you may specify the following additional class names:
     
     -   **data-classtoggle-altclass**  
-        The class you'd like to alternate with the main class. For example, data-classtoggle-class="Red"
-        and data-classtoggle-altclass="Green" will alternate the .Red and .Green classes each time the
-        trigger element is activated.
+        The class you'd like to alternate with the main class. For example, data-classtoggle-class="Red" and 
+        data-classtoggle-altclass="Green" will alternate the .Red and .Green classes each time the trigger element 
+        is activated.
     
     -   **data-classtoggle-trigger-activeclass**  
         Specifies a class to be added to the trigger when it activates the ClassToggle.
     
     -   **data-classtoggle-trigger-selector**  
-        Specifies a jQuery selector which data-classtoggle-trigger-activeclass will be toggled on when
-        the trigger elements are activated. Useful if you have more than one trigger which could
-        trigger the target element.
+        Specifies a jQuery selector which data-classtoggle-trigger-activeclass will be toggled on when the trigger 
+        elements are activated. Useful if you have more than one trigger which could trigger the target element.
     
-    For more information on how to use this plugin, visit http://abitgone.github.com/jQuery-Plugins/ClassToggle
+    For more information on how to use this plugin and for live examples, visit 
+    http://abitgone.github.com/jQuery-Plugins/ClassToggle
     
+    License
+    -------
+    Author: Anthony Williams
+    Web: http://abitgone.github.com/jQuery-Plugins/ClassToggle
+
+    Copyright (c) 2012 Anthony Williams
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+    documentation files (the "Software"), to deal in the Software without restriction, including without limitation the 
+    rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to 
+    permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all copies or substantial portions of
+    the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO 
+    THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+    TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN 
+    THE SOFTWARE.
+
 */
 !function (jQuery) {
     
