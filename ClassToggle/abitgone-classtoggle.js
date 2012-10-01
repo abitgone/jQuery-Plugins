@@ -146,6 +146,7 @@
               , option = $(target).data('classToggle') ? 'classToggle' : $this.data();
             option.sender = e.target;
             $(target).classToggle(option);
+			if ($this.attr('data-classtoggle-target') && $this.attr('href')) e.preventDefault();
         });
     });
     
