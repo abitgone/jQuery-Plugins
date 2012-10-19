@@ -8,7 +8,7 @@ I shall improve this README file as time goes by.
 
 ## Carousel
 
-Carousel takes simple HTML- and CSS-only carousels and progressively enhances them with features such as page lists, scrolling, class-toggling, timers, timer offsets and touch events. By following a basic HTML pattern and using some basic CSS, your carousels will also work, to a degree, without JavaScript enabled.
+Carousel takes simple HTML- and CSS-only carousels and progressively enhances them with features such as page lists, scrolling, class-toggling, timers, timer offsets as well as touch and keyboard events. By following a basic HTML pattern and using some basic CSS, your carousels will also work, to a degree, without JavaScript enabled.
 
 Your carousels can be extended using the following attributes:
 
@@ -28,7 +28,10 @@ Your carousels can be extended using the following attributes:
     Prevents the carousel from pausing on hover or touch events.
     
 -   **data-carousel-notouch**  
-    Prevents the carousel from responding to touch events.
+    Prevents the carousel from responding to touch events. (Implied if there are no pagers.)
+    
+-   **data-carousel-nokeyboard**  
+    Prevents the carousel from responding to keyboard events. (Implied if there are no pagers.)
     
 [Some examples](http://abitgone.github.com/jQuery-Plugins/Carousel) are available.
 

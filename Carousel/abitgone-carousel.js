@@ -117,6 +117,12 @@
             $carousel.attr("data-carousel-items", items);
             $carousel.attr("data-carousel-item", 0);
             
+            // Keyboard Events
+            if (!$carousel.is("[data-carousel-nokeyboard]") && !no_pagers) {
+                $carousel.attr("tabindex", "0");
+                $carousel.on('keyup', $.proxy(this.keymove, this));
+            }
+            
             // Touch Events
             var touch_origin_x
               , touch_origin_y
@@ -252,6 +258,33 @@
                 $carousel_pages.removeClass("active-page");
                 $($carousel_pages[item_index]).addClass("active-page");
             }
+        }
+      , keymove: function (e) {
+            var $carousel = this.$carousel;
+            var $items = this.$items;
+
+            var item_index = parseInt($carousel.attr("data-carousel-item"))
+              , item_count = parseInt($carousel.attr("data-carousel-items"))
+              , item_index_increment;
+            
+            switch(e.keyCode) {
+                case 37: // Left
+                case 38: // Up
+                    item_index_increment = -1;
+                    break;
+                case 39: // Right
+                case 40: // Down
+                    item_index_increment = 1;
+                    break;
+                default:
+                    return;
+                    break;
+            }
+            
+            e.preventDefault();
+            item_index = (item_index + item_index_increment) % item_count;
+            item_index = item_index < 0 ? (item_count - 1) : item_index;
+            this.change_position($carousel, $items, item_index);
         }
       , move: function(e) {
                     
