@@ -7,11 +7,9 @@ Firstly:
 -   Stick to existing conventions.
 
 If you'd like to contribute to the jQuery Plugins, you'll need to fork the repo first. Once you've created a fork, 
-create a branch based on `master`.
+create a branch based on `master`. If you're fixing a bug, please file an issue first so that you and I can track the fix with a commit.
 
-If you're fixing a bug, please file an issue first so that you and I can track the fix with a commit.
-
-Next, create a branch. It helps if you include the issue number in your contribution's branch name. If you're 
+Next, create a branch. It helps if you include the issue number in your contribution's branch name. If your 
 contribution is based on issue 12, for example, you'd create the following branch:
 
 -   For bugfixes:  
