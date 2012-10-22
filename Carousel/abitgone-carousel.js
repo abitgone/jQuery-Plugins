@@ -82,8 +82,8 @@
             this.$container = $container;
             
             // Set up the carousel
-            var touch_lock_x = 0
-              , touch_lock_y = 0
+            var lock_x = 0
+              , lock_y = 0
               , carousel_style;
               
             this.carousel_style = !$carousel.is("[data-carousel-style]") ? "horizontal" : $carousel.attr("data-carousel-style");
@@ -91,8 +91,8 @@
             switch(this.carousel_style) {
                 case "vertical":
                     $carousel.addClass("carousel-vertical");
-                    this.touch_lock_x = 1;
-                    this.touch_lock_y = 0;
+                    this.lock_x = 1;
+                    this.lock_y = 0;
                     break;
                 case "class-only":
                     $carousel.addClass("carousel-classonly");
@@ -100,22 +100,29 @@
                     $items.each(function() { 
                         $(this).css('position', 'absolute').css('top', '0').css('left', '0').css('width', '100%');
                     });
-                    this.touch_lock_x = 0;
-                    this.touch_lock_y = 0;
+                    this.lock_x = 0;
+                    this.lock_y = 0;
                     break;
                 default: 
                     $carousel.addClass("carousel-horizontal");
                     $container.height('100%');
                     $container.width(items*100 + '%');
                     $items.width(100/items + '%');
-                    this.touch_lock_x = 0;
-                    this.touch_lock_y = 1;
+                    this.lock_x = 0;
+                    this.lock_y = 1;
                     break;
             }
                                         
             // Set some data that we'll use throughout 
             $carousel.attr("data-carousel-items", items);
             $carousel.attr("data-carousel-item", 0);
+            
+            // Keyboard Events
+            if (!$carousel.is("[data-carousel-nokeyboard]") && !no_pagers) {
+                $carousel.attr("tabindex", "0");
+                $carousel.on('keydown', $.proxy(this.keydown, this));
+                $carousel.on('keyup', $.proxy(this.keymove, this));
+            }
             
             // Touch Events
             var touch_origin_x
@@ -141,8 +148,8 @@
             // Automatic Progression
             if ($carousel.is("[data-carousel-timer]")) {
                 if(!$carousel.is("[data-carousel-timer-nopause]")) {
-                    $carousel.on('mouseenter touchstart', $.proxy(this.pause, this));
-                    $carousel.on('mouseleave touchend', $.proxy(this.resume, this));
+                    $carousel.on('mouseenter touchstart focus', $.proxy(this.pause, this));
+                    $carousel.on('mouseleave touchend blur', $.proxy(this.resume, this));
                 }
                 $carousel.abg_carousel('resume');
             }
@@ -185,8 +192,8 @@
             
             this.touch_distance_x_px = touch.clientX - this.touch_origin_x;
             this.touch_distance_y_px = touch.clientY - this.touch_origin_y;
-            this.touch_distance_x_pc = (this.touch_distance_x_px/this.touch_element_width)*Math.abs(this.touch_lock_x - 1);
-            this.touch_distance_y_pc = (this.touch_distance_y_px/this.touch_element_height)*Math.abs(this.touch_lock_y - 1);
+            this.touch_distance_x_pc = (this.touch_distance_x_px/this.touch_element_width)*Math.abs(this.lock_x - 1);
+            this.touch_distance_y_pc = (this.touch_distance_y_px/this.touch_element_height)*Math.abs(this.lock_y - 1);
                                                 
             e.preventDefault();
         }
@@ -230,9 +237,9 @@
             var $carousel = $(e.target).parents('[data-carousel]');
         }
       , change_position: function($carousel, $items, item_index) {
-
+            
             var $container = $carousel.find("[data-carousel-items]");
-
+            
             $items.removeClass("active-item");
             $($items[item_index]).addClass("active-item");
             $carousel.attr("data-carousel-item", item_index);
@@ -252,6 +259,29 @@
                 $carousel_pages.removeClass("active-page");
                 $($carousel_pages[item_index]).addClass("active-page");
             }
+        }
+      , keydown: function (e) {
+            if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) e.preventDefault()
+            else return;
+        }
+      , keymove: function (e) {
+            var $carousel = this.$carousel;
+            var $items = this.$items;
+            
+            var item_index = parseInt($carousel.attr("data-carousel-item"))
+              , item_count = parseInt($carousel.attr("data-carousel-items"))
+              , item_index_increment;
+            
+            if ((e.keyCode == 37 && this.lock_x == 0) || (e.keyCode == 38 && this.lock_y == 0)) 
+                item_index_increment = -1
+            else if ((e.keyCode == 39 && this.lock_x == 0) || (e.keyCode == 40 && this.lock_y == 0))
+                item_index_increment = 1
+            else return;
+            
+            e.preventDefault();
+            item_index = (item_index + item_index_increment) % item_count;
+            item_index = item_index < 0 ? (item_count - 1) : item_index;
+            this.change_position($carousel, $items, item_index);
         }
       , move: function(e) {
                     
