@@ -120,6 +120,7 @@
             // Keyboard Events
             if (!$carousel.is("[data-carousel-nokeyboard]") && !no_pagers) {
                 $carousel.attr("tabindex", "0");
+                $carousel.on('keydown', $.proxy(this.keydown, this));
                 $carousel.on('keyup', $.proxy(this.keymove, this));
             }
             
@@ -236,9 +237,9 @@
             var $carousel = $(e.target).parents('[data-carousel]');
         }
       , change_position: function($carousel, $items, item_index) {
-
+            
             var $container = $carousel.find("[data-carousel-items]");
-
+            
             $items.removeClass("active-item");
             $($items[item_index]).addClass("active-item");
             $carousel.attr("data-carousel-item", item_index);
@@ -259,10 +260,23 @@
                 $($carousel_pages[item_index]).addClass("active-page");
             }
         }
+      , keydown: function (e) {
+            switch(e.keyCode) {
+                case 37:
+                case 38:
+                case 39:
+                case 40:
+                    e.preventDefault();
+                    break;
+                default: 
+                    return;
+                    break;
+            }
+        }
       , keymove: function (e) {
             var $carousel = this.$carousel;
             var $items = this.$items;
-
+            
             var item_index = parseInt($carousel.attr("data-carousel-item"))
               , item_count = parseInt($carousel.attr("data-carousel-items"))
               , item_index_increment;
