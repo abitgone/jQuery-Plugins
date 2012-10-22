@@ -148,8 +148,8 @@
             // Automatic Progression
             if ($carousel.is("[data-carousel-timer]")) {
                 if(!$carousel.is("[data-carousel-timer-nopause]")) {
-                    $carousel.on('mouseenter touchstart', $.proxy(this.pause, this));
-                    $carousel.on('mouseleave touchend', $.proxy(this.resume, this));
+                    $carousel.on('mouseenter touchstart focus', $.proxy(this.pause, this));
+                    $carousel.on('mouseleave touchend blur', $.proxy(this.resume, this));
                 }
                 $carousel.abg_carousel('resume');
             }
