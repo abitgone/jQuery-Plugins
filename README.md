@@ -61,5 +61,10 @@ Additionally, you may specify the following additional class names:
     Specifies a jQuery selector which data-classtoggle-trigger-activeclass will be toggled on when
     the trigger elements are activated. Useful if you have more than one trigger which could
     trigger the target element.
+    
+-   **data-classtoggle-showtarget**
+    With no value, will causes the target to be brought into the browser's viewport, if it isn't already visible, 
+    by way of calling `target.scrollIntoView()` on the target, or the first of the targets if more than one target 
+    is specified.
  
 [Some examples](http://abitgone.github.com/jQuery-Plugins/ClassToggle) are available.
