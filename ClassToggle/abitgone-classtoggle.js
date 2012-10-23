@@ -138,12 +138,12 @@
     // ClassToggle Data-Api
     $(function (){
         $('body').on('click.classtoggle.data-api', '[data-classtoggle-class]', function (e) { 
-            var $this = $(this)
-              , href
-              , target = $this.attr('data-classtoggle-target')
+            var $this = $(this),
+                href,
+                target = $this.attr('data-classtoggle-target')
                 || e.preventDefault()
-                || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // Strip for IE7
-              , option = $(target).data('classToggle') ? 'classToggle' : $this.data();
+                || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''), // Strip for IE7
+                option = $(target).data('classToggle') ? 'classToggle' : $this.data();
             option.sender = e.target;
             $(target).classToggle(option);
             if ($this.attr('data-classtoggle-target') && $this.attr('href')) e.preventDefault();

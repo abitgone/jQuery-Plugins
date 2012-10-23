@@ -46,18 +46,18 @@
     
     abg_Carousel.prototype = {
         
-        constructor: abg_Carousel
+        constructor: abg_Carousel,
         
-      , initialise: function(option){
+        initialise: function(option){
             
             var $carousel = this.element;
             this.$carousel = $carousel;
             this.carousel = $carousel[0];
             
-            var $pagers = $carousel.find("[data-carousel-item] [data-carousel-pager]")
-              , $pager_prev
-              , $pager_next
-              , no_pagers = $pagers.length == 0;
+            var $pagers = $carousel.find("[data-carousel-item] [data-carousel-pager]"),
+                $pager_prev,
+                $pager_next,
+                no_pagers = $pagers.length == 0;
                           
             if (!no_pagers) {
                 // Clone the first prev/next pagers and repurpose them
@@ -82,9 +82,9 @@
             this.$container = $container;
             
             // Set up the carousel
-            var lock_x = 0
-              , lock_y = 0
-              , carousel_style;
+            var lock_x = 0,
+                lock_y = 0,
+                carousel_style;
               
             this.carousel_style = !$carousel.is("[data-carousel-style]") ? "horizontal" : $carousel.attr("data-carousel-style");
             
@@ -125,18 +125,18 @@
             }
             
             // Touch Events
-            var touch_origin_x
-              , touch_origin_y
-              , touch_element_width = 0
-              , touch_element_height = 0
-              , touch_distance_x_px
-              , touch_distance_y_px
-              , touch_distance_x_pc
-              , touch_distance_y_pc
-              , touch_started_time
-              , touch_ended_time
-              , touch_duration = 0
-              , touch_itemindex;
+            var touch_origin_x,
+                touch_origin_y,
+                touch_element_width = 0,
+                touch_element_height = 0,
+                touch_distance_x_px,
+                touch_distance_y_px,
+                touch_distance_x_pc,
+                touch_distance_y_pc,
+                touch_started_time,
+                touch_ended_time,
+                touch_duration = 0,
+                touch_itemindex;
               
             // If data-carousel-notouch is set, or no pagers are present, don't enable touch events.
             if (!$carousel.is("[data-carousel-notouch]") && !no_pagers) {
@@ -171,8 +171,8 @@
             
             $carousel.addClass("carousel-ready");
             
-        }
-      , touchstart: function(e) {
+        },
+        touchstart: function(e) {
             var touch = e.originalEvent.touches[0];
             this.touch_origin_x = touch.clientX;
             this.touch_origin_y = touch.clientY;
@@ -185,8 +185,8 @@
             this.touch_started_time = new Date().getTime();
             this.touch_itemindex = parseInt(this.$carousel.attr("data-carousel-item"));
             this.touch_itemcount = parseInt(this.$carousel.attr("data-carousel-items"))-1;
-        }
-      , touchmove: function(e) {
+        },
+        touchmove: function(e) {
             var touch = e.originalEvent.touches[0];
             this.touch_duration = (new Date().getTime() - this.touch_started_time)/1000;
             
@@ -196,17 +196,17 @@
             this.touch_distance_y_pc = (this.touch_distance_y_px/this.touch_element_height)*Math.abs(this.lock_y - 1);
                                                 
             e.preventDefault();
-        }
-      , touchend: function(e) {
+        },
+        touchend: function(e) {
             this.touch_ended_time = new Date().getTime();
             this.touch_duration = (this.touch_ended_time - this.touch_started_time)/1000;
             var touch_movement = !!this.touch_distance_x_pc || !!this.touch_distance_y_pc;
-            var result_x = Math.max(-1, Math.min(1, this.touch_distance_x_pc/Math.min(1, this.touch_duration)))
-              , result_y = Math.max(-1, Math.min(1, this.touch_distance_y_pc/Math.min(1, this.touch_duration)))
-              , result = result_x + result_y;
-            var result_x_rounded = Math.round(result_x)
-              , result_y_rounded = Math.round(result_y)
-              , result_rounded = Math.round(result);
+            var result_x = Math.max(-1, Math.min(1, this.touch_distance_x_pc/Math.min(1, this.touch_duration))),
+                result_y = Math.max(-1, Math.min(1, this.touch_distance_y_pc/Math.min(1, this.touch_duration))),
+                result = result_x + result_y;
+            var result_x_rounded = Math.round(result_x),
+                result_y_rounded = Math.round(result_y),
+                result_rounded = Math.round(result);
                         
             var item_index = this.touch_itemindex;
                         
@@ -235,8 +235,8 @@
             }
             
             var $carousel = $(e.target).parents('[data-carousel]');
-        }
-      , change_position: function($carousel, $items, item_index) {
+        },
+        change_position: function($carousel, $items, item_index) {
             
             var $container = $carousel.find("[data-carousel-items]");
             
@@ -259,18 +259,18 @@
                 $carousel_pages.removeClass("active-page");
                 $($carousel_pages[item_index]).addClass("active-page");
             }
-        }
-      , keydown: function (e) {
+        },
+        keydown: function (e) {
             if (e.keyCode == 37 || e.keyCode == 38 || e.keyCode == 39 || e.keyCode == 40) e.preventDefault()
             else return;
-        }
-      , keymove: function (e) {
+        },
+        keymove: function (e) {
             var $carousel = this.$carousel;
             var $items = this.$items;
             
-            var item_index = parseInt($carousel.attr("data-carousel-item"))
-              , item_count = parseInt($carousel.attr("data-carousel-items"))
-              , item_index_increment;
+            var item_index = parseInt($carousel.attr("data-carousel-item")),
+                item_count = parseInt($carousel.attr("data-carousel-items")),
+                item_index_increment;
             
             if ((e.keyCode == 37 && this.lock_x == 0) || (e.keyCode == 38 && this.lock_y == 0)) 
                 item_index_increment = -1
@@ -282,35 +282,35 @@
             item_index = (item_index + item_index_increment) % item_count;
             item_index = item_index < 0 ? (item_count - 1) : item_index;
             this.change_position($carousel, $items, item_index);
-        }
-      , move: function(e) {
+        },
+        move: function(e) {
                     
             var $carousel = $(e.target).parents('[data-carousel]');
             var $items = $carousel.find("[data-carousel-item]");        
-            var item_index = parseInt($carousel.attr("data-carousel-item"))
-              , item_count = parseInt($carousel.attr("data-carousel-items"))
-              , item_index_increment = e.data.increment;
+            var item_index = parseInt($carousel.attr("data-carousel-item")),
+                item_count = parseInt($carousel.attr("data-carousel-items")),
+                item_index_increment = e.data.increment;
             
             item_index = (item_index + item_index_increment) % item_count;
             item_index = item_index < 0 ? (item_count - 1) : item_index;
             this.change_position($carousel, $items, item_index);
             e.preventDefault();
             
-        }
-      , move_to: function(e) {
+        },
+        move_to: function(e) {
             
             var $carousel = $(e.target).parents('[data-carousel]');
             var $items = $carousel.find("[data-carousel-item]");
             this.change_position($carousel, $items, e.data.item_index)
             e.preventDefault();
             
-        }
-      , cycle: function(e) {
+        },
+        cycle: function(e) {
             
             var $carousel = $(this.element);
             var $items = $carousel.find("[data-carousel-item]");
-            var item_index = parseInt($carousel.attr("data-carousel-item"))
-              , item_count = parseInt($carousel.attr("data-carousel-items"));
+            var item_index = parseInt($carousel.attr("data-carousel-item")),
+                item_count = parseInt($carousel.attr("data-carousel-items"));
             
             if ($carousel.attr("data-carousel-interval-id") !== undefined) {
                 intervalId = parseInt($carousel.attr("data-carousel-interval-id"));
@@ -325,8 +325,8 @@
             timeoutId = window.setTimeout(function() {$carousel.abg_carousel('cycle')}, carousel_timer);
             $carousel.attr("data-carousel-interval-id", timeoutId);
             
-        }
-      , pause: function(e) {
+        },
+        pause: function(e) {
             
             var $carousel = $(this.element);
             $carousel.removeClass("carousel-waiting");
@@ -336,8 +336,8 @@
             }
             $carousel.addClass("carousel-paused");
             
-        }
-      , resume: function() {
+        },
+        resume: function() {
             
             var $carousel = $(this.element);
             $carousel.removeClass("carousel-paused");
@@ -357,9 +357,9 @@
     // Carousel Plugin definition
     $.fn.abg_carousel = function(option, action) {
         return this.each(function() {
-            var $this = $(this)
-              , data = $this.data('carousel')
-              , options = typeof option == 'object' && option;
+            var $this = $(this),
+                data = $this.data('carousel'),
+                options = typeof option == 'object' && option;
             if (!data) $this.data('carousel', (data = new abg_Carousel(this, options)));
             if (typeof option == 'string') data[option](action);
         });
