@@ -78,6 +78,7 @@
             
             var tcClass = this.options.classtoggleClass;
             var tcClassAlt = this.options.classtoggleAltclass;
+            var tcShowTarget = $sender.is("[data-classtoggle-showtarget]");
             var tcTriggerClass = this.options.classtoggleTriggerActiveclass;
             var tcTriggerSelector = this.options.classtoggleTriggerSelector;
             var target = this.options.classtoggleTarget;
@@ -103,6 +104,10 @@
                     $target.toggleClass(tcClassAlt);
                     $target.toggleClass(tcClass);
                 }
+            }
+            
+            if (tcShowTarget) {
+                $target[0].scrollIntoView();
             }
             
             if (tcTriggerClass == undefined) return;
