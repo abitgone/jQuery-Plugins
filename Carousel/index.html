@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>abitgone's jQuery Plugins: Carousel</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="../css/abitgone-jquery-plugins.css" rel="stylesheet">
+        <link href="../css/abitgone-carousel.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <h1>Carousel Examples</h1>
+            <p>Carousel takes simple HTML- and CSS-only carousels and progressively enhances them with features such as page lists, scrolling, class-toggling, timers, timer offsets as well as touch and keyboard events. By following a basic HTML pattern and using some basic CSS, your carousels will also work, to a degree, without JavaScript enabled.</p>
+            <p>Grab or fork the code from <a href="http://github.com/abitgone/jQuery-Plugins/">abitgone's jQuery Plugins repository</a>.</p>
+            <div class="carousel-container carousel-horizontal basic-example" data-carousel>
+                <div class="carousel-items" data-carousel-items>
+                    <div class="carousel-item" data-carousel-item id="cei1" style="background-image: url(http://lorempixel.com/600/400/?w);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cei3"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cei2"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cei2" style="background-image: url(http://lorempixel.com/600/400/?x);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cei1"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cei3"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cei3" style="background-image: url(http://lorempixel.com/600/400/?y);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cei2"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cei4"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cei4" style="background-image: url(http://lorempixel.com/600/400/?z);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cei3"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cei1"><span>Next</span></a>
+                    </div>
+                </div>
+            </div>
+            <p>All of the carousels on this page will work, with obvious limitations, with JavaScript disabled.</p>
+            <h2>Basic Usage</h2>
+            <p>Here is an example of a carousel, with default settings:</p>
+            <p>The carousels above uses a very minor variation on the following, basic markup:</p>
+            <pre>&lt;div data-carousel&gt;
+    &lt;div data-carousel-items&gt;
+        &lt;div data-carousel-item id="item1"&gt;
+            &lt;-- Your Item Content Goes Here --&gt;
+            &lt;a href="item3" data-carousel-pager class="pager-prev"&gt;&lt;span&gt;Prev&lt;/span&gt;&lt;/a&gt;
+            &lt;a href="item2" data-carousel-pager class="pager-next"&gt;&lt;span&gt;Next&lt;/span&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div data-carousel-item id="item2"&gt;
+            &lt;-- Your Item Content Goes Here --&gt;
+            &lt;a href="item1" data-carousel-pager class="pager-prev"&gt;&lt;span&gt;Prev&lt;/span&gt;&lt;/a&gt;
+            &lt;a href="item3" data-carousel-pager class="pager-next"&gt;&lt;span&gt;Next&lt;/span&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div data-carousel-item id="item3"&gt;
+            &lt;-- Your Item Content Goes Here --&gt;
+            &lt;a href="item2" data-carousel-pager class="pager-prev"&gt;&lt;span&gt;Prev&lt;/span&gt;&lt;/a&gt;
+            &lt;a href="item1" data-carousel-pager class="pager-next"&gt;&lt;span&gt;Next&lt;/span&gt;&lt;/a&gt;
+        &lt;/div&gt;        
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+            <p>Only the first set of <code>&lt;a&gt;</code> elements are required if you want pagers. The entire set is included to allow users without JavaScript to use the carousels.</p>
+            <p>Additional classes are used throughout the examples, but these are all mainly for style purposes. While you are free to use the CSS used in the examples, the intention is that you &mdash; the designer &mdash; will customise the look of your carousel yourself; this plugin simply adds the required behaviours.</p>
+            <p>Each <code>data-carousel-item</code> can contain any content you like. In all of the examples on this page, the items are empty, using the <code>background-image</code> CSS property to style them, but you can put any additional content in and style it as you please.</p>
+            <h3>Responsive Design</h3>
+            <p>When using the <em>horizontal</em> and <em>vertical</em> scrolling styles, the positioning uses percentage offsets instead of pixel-based offsets. To demonstrate this capability, simply resize your browser.</p>
+            <h3>Options</h3>
+            <p>The following <code>data-carousel-*</code> variables and class names can be used to configure additional options:</p>
+            <dl>
+                <dt><strong>data-carousel-style</strong> (default: horizontal)</dt>
+                <dd>Sets the style of the carousel. Valid values are <em>horizontal</em> (default), <em>vertical</em> and <em>class-only</em>. If you&rsquo;re planning to support clients without JavaScript, you should also add the <code>.carousel-horizontal</code>, <code>.carousel-vertical</code> or <code>.carousel-classonly</code> classes to your carousels as appropriate.</dd>
+                <dt><strong>data-carousel-pagelist</strong></dt>
+                <dd>Adds a page list to the carousel container, containing links to each item.</dd>
+                <dt><strong>data-carousel-timer="10000"</strong> (milliseconds)</dt>
+                <dd>Automatically cycles through the pager items every 10000 milliseconds (10 seconds). The timer is paused when hovering over or touching the carousel, and resumed when leaving or releasing.</dd>
+                <dt><strong>data-carousel-timer-delay="2000"</strong> (milliseconds)</dt>
+                <dd>Adds a 2000 millisecond (2 second) delay to the first cycle.</dd>
+                <dt><strong>data-carousel-timer-nopause</strong></dt>
+                <dd>Prvents the carousel from pausing on hover or touch events.</dd>
+                <dt><strong>data-carousel-notouch</strong></dt>
+                <dd>Prevents the carousel from responding to touch events.</dd>
+            </ul>
+            
+            <h2>Examples</h2>
+            <p>By using different combinations of the above options with your own CSS, you can create a variety of carousels:</p>
+            <h3>Horizontal Scrolling</h3>
+            <p>The default style of carousel. Uses absolute positioning on the <code>data-carousel-items</code> container to scroll left and right. CSS3 transitions are used to smoothly transition the <code>left</code> CSS property. The page list is also enabled on this carousel, by including the <code>data-carousel-pagelist</code> attribute.</p>
+            <div class="carousel-container carousel-horizontal" data-carousel data-carousel-style="horizontal" data-carousel-timer="6000" data-carousel-pagelist>
+                <div class="carousel-items" data-carousel-items>
+                    <div class="carousel-item" data-carousel-item id="chi1" style="background-image: url(http://lorempixel.com/600/400/?1);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#chi5"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#chi2"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="chi2" style="background-image: url(http://lorempixel.com/600/400/?2);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#chi1"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#chi3"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="chi3" style="background-image: url(http://lorempixel.com/600/400/?3);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#chi2"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#chi4"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="chi4" style="background-image: url(http://lorempixel.com/600/400/?4);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#chi3"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#chi5"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="chi5" style="background-image: url(http://lorempixel.com/600/400/?5);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#chi4"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#chi1"><span>Next</span></a>
+                    </div>
+                </div>
+            </div>
+            <h3>Vertical Scrolling</h3>
+            <p>Uses absolute positioning on the <code>data-carousel-items</code> container to scroll up and down, with CSS3 transitions used to smoothly transition the <code>top</code> CSS property. The basic styles used have also been applied to the pagelist to change the appearance to a vertical list.</p>
+            <div class="carousel-container carousel-vertical" data-carousel data-carousel-style="vertical" data-carousel-timer="6000" data-carousel-timer-delay="2000" data-carousel-pagelist>
+                <div class="carousel-items" data-carousel-items>
+                    <div class="carousel-item" data-carousel-item id="cvi1" style="background-image: url(http://lorempixel.com/600/400/?1);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cvi10"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cvi2"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cvi2" style="background-image: url(http://lorempixel.com/600/400/?2);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cvi1"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cvi3"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cvi3" style="background-image: url(http://lorempixel.com/600/400/?3);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cvi2"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cvi4"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cvi4" style="background-image: url(http://lorempixel.com/600/400/?4);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cvi3"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cvi5"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cvi5" style="background-image: url(http://lorempixel.com/600/400/?5);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cvi4"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cvi6"><span>Next</span></a>
+                    </div>
+                </div>
+            </div>
+            <h3>Class Toggling</h3>
+            <p>This style can be used to roll your own styles. The <code>opacity</code> CSS property is used in conjunction with CSS3 transitions to create a cross-fading carousel. Additionally, there is no page list on this example.</p>
+            <div class="carousel-container carousel-classonly" data-carousel data-carousel-style="class-only" data-carousel-timer="6000" data-carousel-timer-delay="4000">
+                <div class="carousel-items" data-carousel-items>
+                    <div class="carousel-item" data-carousel-item id="cfi1" style="background-image: url(http://lorempixel.com/600/400/?1);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cfi10"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cfi2"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cfi2" style="background-image: url(http://lorempixel.com/600/400/?2);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cfi1"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cfi3"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cfi3" style="background-image: url(http://lorempixel.com/600/400/?3);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cfi2"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cfi4"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cfi4" style="background-image: url(http://lorempixel.com/600/400/?4);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cfi3"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cfi5"><span>Next</span></a>
+                    </div>
+                    <div class="carousel-item" data-carousel-item id="cfi5" style="background-image: url(http://lorempixel.com/600/400/?5);">
+                        <a data-carousel-pager class="carousel-pager pager-prev" href="#cfi4"><span>Prev</span></a>
+                        <a data-carousel-pager class="carousel-pager pager-next" href="#cfi6"><span>Next</span></a>
+                    </div>
+                </div>
+            </div>
+            <h3>Timer Delay</h3>
+            <p>If you need more than one carousel in a confined space, you may wish to use  <code>data-carousel-timer-delay</code> to delay the transitions &mdash; the example below triggers every 6000ms, with a 500ms delay for the second carousel and a 1000ms delay for the third. This example also removes the pagers (and thus, disables touch events) and uses <code>data-carousel-timer-nopause</code> to prevent the carousel from pausing on hover events.</p>
+            <div class="three-carousels">
+                <div class="carousel-container carousel-threeup" data-carousel data-carousel-timer="6000" data-carousel-timer-nopause>
+                    <div class="carousel-items" data-carousel-items>
+                        <div class="carousel-item" data-carousel-item id="c3u1i1" style="background-image: url(http://lorempixel.com/600/400/?1);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u1i2" style="background-image: url(http://lorempixel.com/600/400/?2);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u1i3" style="background-image: url(http://lorempixel.com/600/400/?3);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u1i4" style="background-image: url(http://lorempixel.com/600/400/?4);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u1i5" style="background-image: url(http://lorempixel.com/600/400/?5);">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-container carousel-threeup" data-carousel data-carousel-timer="6000" data-carousel-timer-nopause data-carousel-timer-delay="500">
+                    <div class="carousel-items" data-carousel-items>
+                        <div class="carousel-item" data-carousel-item id="c3u2i1" style="background-image: url(http://lorempixel.com/600/400/?1);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u2i2" style="background-image: url(http://lorempixel.com/600/400/?2);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u2i3" style="background-image: url(http://lorempixel.com/600/400/?3);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u2i4" style="background-image: url(http://lorempixel.com/600/400/?4);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u2i5" style="background-image: url(http://lorempixel.com/600/400/?5);">
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-container carousel-threeup" data-carousel data-carousel-timer="6000" data-carousel-timer-nopause data-carousel-timer-delay="1000">
+                    <div class="carousel-items" data-carousel-items>
+                        <div class="carousel-item" data-carousel-item id="c3u3i1" style="background-image: url(http://lorempixel.com/600/400/?1);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u3i2" style="background-image: url(http://lorempixel.com/600/400/?2);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u3i3" style="background-image: url(http://lorempixel.com/600/400/?3);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u3i4" style="background-image: url(http://lorempixel.com/600/400/?4);">
+                        </div>
+                        <div class="carousel-item" data-carousel-item id="c3u3i5" style="background-image: url(http://lorempixel.com/600/400/?5);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        <!-- <h3>Code</h3>
+            <pre id="pre-code"></pre> -->
+
+        </div> <!-- /container -->
+
+        <!-- All scripts (that can) should go at the bottom to improve load times -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="abitgone-carousel.js"></script>
+    </body>
+</html>

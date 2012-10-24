@@ -1,0 +1,377 @@
+.carousel-container {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.carousel-container,
+.carousel-item,
+.item-background {
+    display: block;
+    overflow: hidden;
+}
+.carousel-item,
+.item-background {
+    background-position: center center;
+    background-size: cover;
+}
+.carousel-container,
+.carousel-items,
+.carousel-item {
+    position: relative;
+}
+
+.item-content {
+    display: block;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.85);
+    outline: 1px solid rgba(0,0,0,0.125);
+    width: 60%;
+    padding: 2.5%;
+    margin: 6.25%;
+    position: absolute;
+}
+.item-content.tl,
+.item-content.tr { top: 0; }
+.item-content.bl,
+.item-content.br { bottom: 0; }
+.item-content.tl,
+.item-content.bl { left: 0; }
+.item-content.tr,
+.item-content.br { right: 0; }
+.item-content:link,
+.item-content:visited,
+.item-content:hover,
+.item-content:active {
+    color: #333;
+    text-decoration: none;
+}
+.item-content h3,
+.item-content p {
+    margin: 0;
+}
+.item-content * {
+    color: #000;
+}
+.item-content h3 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+}
+.item-content p {
+    font-size: 11px;
+    line-height: 15px;
+}
+
+.carousel-container {
+    width: 600px;
+}
+.carousel-container,
+.carousel-item,
+.item-background {
+    height: 400px;
+}
+.carousel-pager {
+    width: 10%;
+}
+.carousel-threeup,
+.carousel-threeup .carousel-item,
+.carousel-threeup .item-background {
+    height: 200px;
+}
+@media screen and (max-width: 583px) {
+    .carousel-container {
+        width: 100%;
+    }
+    .carousel-container,
+    .carousel-item,
+    .item-background {
+        height: 120px;
+    }
+    .carousel-pager {
+        width: 10%;
+    }
+    .carousel-threeup,
+    .carousel-threeup .carousel-item,
+    .carousel-threeup .item-background {
+        height: 80px;
+    }
+}
+@media screen and (min-width: 584px) {
+    .carousel-container {
+        width: 400px;
+    }
+    .carousel-container,
+    .carousel-item,
+    .item-background {
+        height: 160px;
+    }
+    .carousel-pager {
+        width: 10%;
+    }
+    .carousel-threeup,
+    .carousel-threeup .carousel-item,
+    .carousel-threeup .item-background {
+        height: 120px;
+    }
+}
+@media screen and (min-width: 764px) {
+    .carousel-container {
+        width: 520px;
+    }
+    .carousel-container,
+    .carousel-item,
+    .item-background {
+        height: 280px;
+    }
+    .carousel-pager {
+        width: 10%;
+    }
+    .item-content h3 {
+        font-size: 21px;
+        font-weight: bold;
+        line-height: 26px;
+        margin-bottom: 5px;
+    }
+    .item-content p {
+        font-size: 15px;
+        line-height: 20px;
+    }
+    .carousel-threeup,
+    .carousel-threeup .carousel-item,
+    .carousel-threeup .item-background {
+        height: 150px;
+    }
+}
+@media screen and (min-width: 984px) {
+    .carousel-container {
+        width: 600px;
+    }
+    .carousel-container,
+    .carousel-item,
+    .item-background {
+        height: 400px;
+    }
+    .carousel-pager {
+        width: 10%;
+    }
+    .carousel-threeup,
+    .carousel-threeup .carousel-item,
+    .carousel-threeup .item-background {
+        height: 200px;
+    }
+}
+
+.three-carousels:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+}
+.carousel-threeup {
+    width: 30%;
+    float: left;
+    margin-left: 5%;
+}
+.carousel-threeup:first-child {
+    margin-left: 0;
+}
+
+.item-content {
+    display: block;
+    background-color: #fff;
+    background-color: rgba(255,255,255,0.85);
+    width: 60%;
+    padding: 2.5%;
+    margin: 6.25%;
+    position: absolute;
+}
+.item-content.tl,
+.item-content.tr { top: 0; }
+.item-content.bl,
+.item-content.br { bottom: 0; }
+.item-content.tl,
+.item-content.bl { left: 0; }
+.item-content.tr,
+.item-content.br { right: 0; }
+.item-content:link,
+.item-content:visited,
+.item-content:hover,
+.item-content:active {
+    color: #333;
+    text-decoration: none;
+}
+
+.carousel-pager {
+    background-color: rgba(0,0,0,0.25);
+    text-decoration: none;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0,0,0,0.75);
+    font-family: sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.carousel-pager span {
+    display: block;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    line-height: 30px;
+    margin-top: -15px;
+    text-align: center;
+}
+.carousel-horizontal .carousel-pager,
+.carousel-classonly .carousel-pager {
+    width: 10%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+}
+.carousel-horizontal .carousel-pager span,
+.carousel-classonly .carousel-pager span {
+    width: 100%;
+    overflow: hidden;
+}
+.carousel-vertical .carousel-pager {
+    width: 100%;
+    height: 10%;
+    left: 0;
+    position: absolute;
+}
+
+.carousel-horizontal .pager-prev,
+.carousel-classonly .pager-prev         { left: -10%; }
+.carousel-horizontal:hover .pager-prev,
+.carousel-classonly:hover .pager-prev   { left: 0; }
+.carousel-horizontal .pager-next,
+.carousel-classonly .pager-next         { right: -10%; }
+.carousel-horizontal:hover .pager-next,
+.carousel-classonly:hover .pager-next   { right: 0; }
+
+.carousel-vertical .pager-prev          { top: -10%; }
+.carousel-vertical:hover .pager-prev    { top: 0; }
+.carousel-vertical .pager-next          { bottom: -10%; }
+.carousel-vertical:hover .pager-next    { bottom: 0; }
+
+.basic-example .pager-prev { left: 0; }
+.basic-example .pager-next { right: 0; }
+
+.carousel-pager:link,
+.carousel-pager:visited,
+.carousel-pager:hover,
+.carousel-pager:active {
+    color: #fff;
+    text-decoration: none;
+}
+
+.carousel-pagelist {
+    position: absolute;
+    margin: 0; 
+    padding: 0; 
+    border: 0;
+    list-style: none;
+}
+.carousel-pagelist ul {
+    margin: 0; padding: 0;
+}
+.carousel-horizontal .carousel-pagelist,
+.carousel-classonly .carousel-pagelist {
+    width: 100%;
+    height: 10%;
+    left: 0;
+    bottom: 2px;
+}
+.carousel-vertical .carousel-pagelist {
+    height: 100%;
+    right: 11px;
+    top: 0;
+}
+.carousel-pagelist td {
+    vertical-align: center;
+    text-align: center;
+}
+.carousel-pagelist li {
+    display: inline-block;
+    list-style: none;
+    width: 12px;
+    height: 12px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.5);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.75);
+    margin: 0 3px;
+}
+.carousel-vertical .carousel-pagelist li {
+    display: block;
+    margin: 3px 0;
+}
+.carousel-pagelist a span {
+    display: block;
+    text-indent: 100%;
+    overflow: hidden;
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    margin: 2px;
+    -webkit-transition: 0.125s all ease-in-out;
+    -moz-transition: 0.125s all ease-in-out;
+    -o-transition: 0.125s all ease-in-out;
+    transition: 0.125s all ease-in-out;
+}
+.carousel-vertical .carousel-pagelist a {
+    margin: 6px 0;
+    display: block;
+    position: relative;
+    clear: both;
+}
+.carousel-vertical .carousel-pagelist a span {
+    display: block;
+    position: relative;
+    margin: 0;
+    top: 2px;
+    left: 2px;
+}
+.carousel-pagelist li.active-page a span {
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.75);
+}
+
+.carousel-pagelist { opacity: 0;}
+.carousel-container:hover .carousel-pagelist { opacity: 1; }
+
+.carousel-pagelist {
+    -webkit-transition: 0.125s opacity ease-in-out;
+    -moz-transition: 0.125s opacity ease-in-out;
+    -o-transition: 0.125s opacity ease-in-out;
+    transition: 0.125s opacity ease-in-out;
+}
+.carousel-container .carousel-pager {
+    -webkit-transition: 0.125s all ease-in-out;
+    -moz-transition: 0.125s all ease-in-out;
+    -o-transition: 0.125s all ease-in-out;
+    transition: 0.125s all ease-in-out;
+}
+
+.carousel-horizontal.carousel-ready .carousel-item { 
+    float: left; 
+}
+.carousel-horizontal .carousel-items {
+    -webkit-transition: 0.5s left ease-in-out;
+    -moz-transition: 0.5s left ease-in-out;
+    -o-transition: 0.5s left ease-in-out;
+    transition: 0.5s left ease-in-out;
+}
+.carousel-vertical.carousel-ready .carousel-item { 
+    float: none;
+    clear: both;
+}
+.carousel-vertical .carousel-items {
+    -webkit-transition: 0.5s top ease-in-out;
+    -moz-transition: 0.5s top ease-in-out;
+    -o-transition: 0.5s top ease-in-out;
+    transition: 0.5s top ease-in-out;
+}
+.carousel-classonly.carousel-ready .carousel-item { 
+    opacity: 0; -webkit-transition: 0.5s opacity ease-in-out;
+ }
+.carousel-classonly.carousel-ready .active-item { 
+    opacity: 1; 
+}

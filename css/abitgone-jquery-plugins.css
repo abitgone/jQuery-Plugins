@@ -1,0 +1,73 @@
+body { 
+    margin-top: 1.5em; 
+    margin-bottom: 1.5em; 
+    font-size: 16px; 
+}
+
+p { 
+    font-size: 0.8125em; 
+    line-height: 1.692;
+}
+h1 {
+    font-size: 1.875em; /* 30*/
+    line-height: 1.1;
+    margin-top: 1.1em;
+    margin-bottom: 0.3667em;
+}
+h2 {
+    font-size: 1.846em; /* 24 */
+    margin-top: 1.375em;
+    margin-bottom: 0.458em;
+}
+h3 {
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+.target {
+    padding: 2.5em 5em;
+    margin: 1.25em 0;
+    display: inline-block;
+    border: 0.0769em solid rgba(0,0,0,0.125);
+}
+.active,
+.green {
+    background-color: rgb(191,255,191);
+    background-color: rgba(0,255,0,0.25);
+}
+.red {
+    background-color: rgb(255,191,191);
+    background-color: rgba(255,0,0,0.25);
+}
+.trigger-active,
+.trigger-active:hover {
+    background-color: rgb(255,255,153);
+    background-color: rgba(255,255,0,0.4);
+    outline: 0.308em solid rgba(255,255,0,0.4);
+}
+.target {
+    -webkit-transition: background-color 0.25s ease-in-out;
+    -moz-transition: background-color 0.25s ease-in-out;
+    -ms-transition: background-color 0.25s ease-in-out;
+    -o-transition: background-color 0.25s ease-in-out;
+    transition: background-color 0.25s ease-in-out;
+}
+
+ul li {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 0.85em;
+}
+dl dd,
+dl dt {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+    font-size: 0.85em;
+}
+dl dt {
+    margin-top: 1em;
+}
+dl dd {
+    margin-bottom: 1em;
+    margin-left: 2em;
+}
