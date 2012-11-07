@@ -52,6 +52,11 @@ h3 {
     -o-transition: background-color 0.25s ease-in-out;
     transition: background-color 0.25s ease-in-out;
 }
+em.type {
+    font-size: 85%;
+    color: #666;
+    font-weight: normal;
+}
 
 ul li {
     margin-top: 0.5em;

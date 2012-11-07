@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>abitgone's jQuery Plugins: Google Analytics Helper</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/bootstrap-responsive.css" rel="stylesheet">
+        <link href="../css/abitgone-jquery-plugins.css" rel="stylesheet">
+        
+        <!--[if lt IE 9]>
+        <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    
+    <body>
+        <div class="container">
+            <h1>Google Analytics Helper Examples</h1>
+            <p>Grab or fork the code from <a href="http://github.com/abitgone/jQuery-Plugins/">abitgone's jQuery Plugins repository</a>.</p>
+            
+            <h2>A Note Regarding the Example Links</h2>
+            <p>This helper script works with Google Analytics, which requires an account. <a href="https://www.google.com/analytics/web/?hl=en&amp;userexp=signup">You can sign up for a free account</a> if you don&rsquo;t already have one.</p>
+            <p>The the example URLs on this page have been set up to work with my Google Analytics account for abitgone.github.com. If you want to use the example links on this page with your own account, enter your Google Analtyics in the box below and click the 'Use My Analytics Account' button.</p>
+            <div class="row">
+                <form class="well span3">
+                    <label>
+                        Google Analytics Account ID:
+                        <input id="GAAccountID" type="text" placeholder="UA-xxxxxx-x" />
+                    </label>
+                    <button id="SetGAAccountID" type="button" class="btn btn-primary">Use My Analytics Account</button>
+                </form>
+            </div>
+            <p>This will tell the Google Analytics script to track against your tracking ID, not mine, so you can see the examples show up in your analytics account. You may want to set up a new property in Google Analytics for this purpose.</p>
+
+            <h2>Basic Usage</h2>
+            <p>The Google Analytics helper has two main uses:</p>
+            <ul>
+                <li><strong>Tracking Events</strong><br />
+                    The helper allows you to track an event on links or other elements by specifing data attributes, helping you track on-page events which are not related to a web page visit, such as interaction with a video or any other user event which does not trigger a page request. More information on event tracking is available on Google&rsquo;s <a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide">Event Tracking Guide</a>.</li>
+                <li><strong>Tracking URLs</strong><br />
+                    The helper allows you to track individual URLs that don&rsquo;t ordinarily load the Google Analytics scripts. For example, if you wanted to track the downloads of a PDF, you can specify data attributes on the link to the PDF to track the download. More information on URL tracking is available on Google&rsquo;s <a href="https://developers.google.com/analytics/devguides/collection/gajs/?hl=en">Tracking Basics</a> page.</li>
+            </ul>
+            <p>You can use one or both types of tracking on a single link.</p>
+
+            <h3>Tracking Events</h3>
+            <p>The link we&rsquo;ll use for our event tracking example is shown below:</p>
+            <pre>&lt;a href="/Path/To/Your/Page" data-gahelper-event="Play" 
+                             data-gahelper-event-category="Video"
+                             data-gahelper-event-label="/Videos/Category/12345"
+                             data-gahelper-event-value="189"
+                             data-gahelper-event-noninteraction="false">Test Link&lt;/a&gt;</pre>
+            <p>The data attributes map straight to their Google Analytics counterparts:</p>
+            <dl>
+                <dt>data-gahelper-event (required) <em class="type">string</em></dt>
+                    <dd>The name of the event you&rsquo;d like to track. Generally speaking, this should be a common definition of the type of user interaction on the element. For example, you might choose <em>Play</em>, <em>Pause</em> and <em>Stop</em>.</dd>
+                <dt>data-gahelper-event-category (required) <em class="type">string</em></dt>
+                    <dd>The category of events that your event belongs to. This will serve to group the common event definitions you chose above. Using the examples from above, you may wish to group them under the <em>Videos</em> category.</dd>
+                <dt>data-gahelper-event-label <em class="type">string</em></dt>
+                    <dd>The optional event label is used to further define your event. Continuing with our video example, we&rsquo;ve used the site-relative URL for the video being requested, <em>/Videos/Category/12345</em>. This parameter can be used to track any additional information for the event you wish to track, and allows multiple similar events on a page to appear as distinct elements in the event tracking report on Google Analytics.</dd>
+                <dt>data-gahelper-event-value <em class="type">integer</em></dt>
+                    <dd>The optional event value is an integer type which allows you to track arbitrary numeric data against each event that is triggered. It can be used in a range of ways, which are all explained in detail in <a href="https://developers.google.com/analytics/devguides/collection/gajs/eventTrackerGuide#Values">the Values section of the Google Analytics Event Tracking Guide</a>.</dd>
+                <dt>data-gahelper-event-noninteraction <em class="type">true or false</em></dt>
+                    <dd>By default, if a user comes to your page, triggers an event and then leaves the page and your website, Google Analytics will not consider that visit to be a bounce. You may, however, want it to ignore events that are tracked. By setting <code>data-gahelper-event-noninteraction</code> to <code>true</code> means that if a single page visit session triggers this event, the visit will still be classed as a bounce.</dd>
+                <dt>data-gahelper-preventdefault <em class="type">true or false</em></dt>
+                    <dd>Unrelated to Google Analytics tracking, setting this parameter to true will prevent the element&rsquo;s default action from firing.</dd>
+            </dl>
+            <p>As an example, our code above &mdash; the equivalent of <a href="#" data-gahelper-event="Play" data-gahelper-event-category="Video" data-gahelper-event-label="/Videos/Category/12345" data-gahelper-event-value="189" data-gahelper-event-noninteraction="false" data-gahelper-preventdefault="true">this test link</a> &mdash; will trigger the following Google Analytics tracking code:</p>
+            <pre>_gaq.push(["_trackEvent", "Video", "Play", "/Videos/Category/12345", 189, false);</pre>
+            
+            <h3>Tracking URLs</h3>
+            <p>The link we&rsquo;ll use for our URL tracking example is shown below:</p>
+            <pre>&lt;a href="/Path/To/Your/Document.pdf" data-gahelper-url="/Path/To/Your/Document.pdf">Test Link&lt;/a&gt;</pre>
+            <p>The following data-attributes are used for URL tracking:</p>
+            <dl>
+                <dt>data-gahelper-url (required) <em class="type">string</em></dt>
+                    <dd>The URL you wish to track, which should be site-relative and start with a forward slash.</dd>
+                <dt>data-gahelper-preventdefault <em class="type">true or false</em></dt>
+                    <dd>Unrelated to Google Analytics tracking, setting this parameter to true will prevent the element&rsquo;s default action from firing.</dd>
+            </dl>
+            <p>As an example, our code above &mdash; the equivalent of <a href="#" data-gahelper-url="/Path/To/Your/Document.pdf" data-gahelper-preventdefault="true">this test link</a> &mdash; will trigger the following Google Analytics tracking code:</p>
+            <pre>_gaq.push(["_trackPageview", "/Path/To/Your/Document.pdf");</pre>
+
+        </div><!-- /container -->
+        
+        <!-- All scripts (that can) should go at the bottom to improve load times -->
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-365434-4']);
+            _gaq.push(['_trackPageview']);
+            (function() {
+                var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+            })();
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+        <script src="abitgone-gahelper.js"></script>
+        <script src="abitgone-gahelper-example.js"></script>
+    </body>
+</html>
