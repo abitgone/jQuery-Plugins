@@ -1,0 +1,7 @@
+{
+    "tab_size": 4,
+    "draw_white_space": "selection",
+    "trim_trailing_white_space_on_save": true,
+    "translate_tabs_to_spaces": true,
+    "highlight_line": true
+}
