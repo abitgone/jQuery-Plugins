@@ -1,5 +1,7 @@
 # Google Analytics Helper
 
+**Notice: The Google Analytics Helper plugin has been tested and works with the beta 1 release of jQuery 2.0.**
+
 The Google Analytics helper offers an easy way to track events and pageviews using data attributes.
 
 The helper uses the following attributes to track events:

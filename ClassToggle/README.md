@@ -1,5 +1,7 @@
 # ClassToggle
 
+**Notice: The ClassToggle plugin has been tested and works with the beta 1 release of jQuery 2.0.**
+
 ClassToggle toggles, on a target element, a single class on and off or between two classes.
 
 As a bare minimum, your trigger element must have the following attributes:
