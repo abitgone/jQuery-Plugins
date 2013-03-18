@@ -57,10 +57,10 @@
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="#ex1-target" data-classtoggle-class="red" 
+    &lt;a href="#ex3-target" data-classtoggle-class="red" 
        data-classtoggle-altclass="green"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex2-target" class="red"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex3-target" class="red"&gt;Target 3&lt;/div&gt;</pre>
             
             <h2 id="ex4">Toggle Class on Target and Trigger</h2>
             <p>Toggles a class on a target element and the trigger. <a href="#ex3-target" data-classtoggle-class="active" data-classtoggle-trigger-activeclass="trigger-active">This link</a> will toggle the <code>.active</code> class on the example div element below and will toggle <code>.trigger-active</code> on itself.</p>
@@ -68,10 +68,10 @@
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="#ex3-target" data-classtoggle-class="active" 
+    &lt;a href="#ex4-target" data-classtoggle-class="active" 
        data-classtoggle-trigger-activeclass="trigger-active"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex3-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex4-target"&gt;Target 4&lt;/div&gt;</pre>
             
             <h2 id="ex5">Toggle Two Classes and Toggle Multiple Triggers</h2>
             <p>Switches between two classes on a target element and toggles an active class on all triggers matching <code>.triggerset</code>. Both <a href="#ex4-target" class="triggerset" data-classtoggle-class="red" data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" data-classtoggle-trigger-selector=".triggerset">this link</a> and <a href="#ex4-target" class="triggerset" data-classtoggle-class="red" data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" data-classtoggle-trigger-selector=".triggerset">this additional link</a> will toggle between <code>.red</code> and <code>.green</code> on the target element. Both links, regardless of which one triggered, will be targeted by <code>.triggerset</code> and have <code>.trigger-active</code> toggled on them.</p>
@@ -79,14 +79,14 @@
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="#ex4-target" class="triggerset" data-classtoggle-class="red" 
+    &lt;a href="#ex5-target" class="triggerset" data-classtoggle-class="red" 
        data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" 
        data-classtoggle-trigger-selector=".triggerset"&gt;Toggle 1&lt;/a&gt; and 
-    &lt;a href="#ex4-target" class="triggerset" data-classtoggle-class="red" 
+    &lt;a href="#ex5-target" class="triggerset" data-classtoggle-class="red" 
        data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" 
        data-classtoggle-trigger-selector=".triggerset"&gt;Toggle 2&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex4-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex5-target"&gt;Target 5&lt;/div&gt;</pre>
             
             <h2 id="ex6">Toggling Classes and Retaining HREF</h2>
             <p>Where you want to use hyperlinks in cases where JavaScript may be disabled, you can use the <code>data-classtoggle-target</code> attribute. <a href="/ClassToggle/index.html" data-classtoggle-target="#ex6-target" data-classtoggle-class="active">This link</a> points to this page, but will target the DIV element below instead:</p>               
@@ -94,9 +94,9 @@
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="/ClassToggle/index.html" data-classtoggle-target="#ex5-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
+    &lt;a href="/ClassToggle/index.html" data-classtoggle-target="#ex6-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex5-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex6-target"&gt;Target 6&lt;/div&gt;</pre>
           
         </div> <!-- /container -->
         
