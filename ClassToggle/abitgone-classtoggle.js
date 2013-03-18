@@ -11,14 +11,15 @@
         This specifies the target element
         
     -   **data-classtoggle-class**  
-        The class to be toggled, on and off, by the trigger
+        The class, or comma-separated classes, to be toggled, on and off, by the trigger
         
     Additionally, you may specify the following additional class names:
     
     -   **data-classtoggle-altclass**  
         The class you'd like to alternate with the main class. For example, data-classtoggle-class="Red" and 
         data-classtoggle-altclass="Green" will alternate the .Red and .Green classes each time the trigger element 
-        is activated.
+        is activated. Unlike multiple classes, this will check for the existence of data-classtoggle-class and
+        data-classtoggle-altclass before toggling the main class or alternate class.
         
     -   **data-classtoggle-trigger-activeclass**  
         Specifies a class to be added to the trigger when it activates the ClassToggle.
@@ -91,18 +92,26 @@
             var $target = $(target);
             
             if (tcClass == undefined || $target == undefined) return;
+            tcClass = tcClass.split(',')
             
-            var targetMain = $target.hasClass(tcClass);
+            var targetMain = false;
+            for (var i=0;i<tcClass.length && targetMain == false;i++) {
+                targetMain = $target.hasClass(tcClass);
+            }
             var targetAlt = tcClassAlt == undefined ? false : $target.hasClass(tcClassAlt);
             
             if (tcClassAlt == undefined) {
-                $target.toggleClass(tcClass);
+                for (var i=0;i<tcClass.length;i++) {
+                    $target.toggleClass(tcClass);
+                }
             } else {
                 if((targetMain && targetAlt) || (!targetMain && !targetAlt)) {
                     $target.toggleClass(tcClassAlt);
                 } else {
                     $target.toggleClass(tcClassAlt);
-                    $target.toggleClass(tcClass);
+                    for (var i=0;i<tcClass.length;i++) {
+                        $target.toggleClass(tcClass);
+                    }
                 }
             }
             
