@@ -21,8 +21,8 @@
             <h1>ClassToggle Examples</h1>
             <p>Grab or fork the code from <a href="http://github.com/abitgone/jQuery-Plugins/">abitgone's jQuery Plugins repository</a>.</p>
             
-            <h2>Basic Usage</h2>
-            <p>Trigger a class on a target element. <a href="#ex1-target" data-classtoggle-class="active">This link</a> will toggle the <code>.active</code> class on the example div element below.<p>
+            <h2 id="ex1">Basic Usage</h2>
+            <p>Trigger a class on a target element. <a href="#ex1-target" data-classtoggle-class="active">This link</a> will toggle the <code>.active</code> class on the example div element below.</p>
             <div class="target" id="ex1-target">Target 1</div>
             
             <p>Code:</p>
@@ -31,68 +31,67 @@
 &lt;/p&gt;
 &lt;div id="ex1-target"&gt;Target&lt;/div&gt;</pre>
             
-            <h2>Toggle Main and Alternate Classes</h2>
-            <p>Switch between two classes on a target element, but only if the other doesn't already exist. <a href="#ex2-target" data-classtoggle-class="red" data-classtoggle-altclass="green">This link</a> will switch between <code>.red</code> and <code>.green</code> on the target element.</p>
-            <div class="target red" id="ex2-target">Target 2</div>
-            
-            <p>Code:</p>
-            <pre>&lt;p&gt;
-    &lt;a href="#ex2-target" data-classtoggle-class="red" 
-       data-classtoggle-altclass="green"&gt;Toggle&lt;/a&gt;
-&lt;/p&gt;
-&lt;div id="ex2-target" class="red"&gt;Target&lt;/div&gt;</pre>
-            
-            <h2>Toggle Multiple Classes</h2>
-            <p>Switch between two classes on a target element. Checks to see if the alternate class is set before doing so. <a href="#ex3-target" data-classtoggle-class="red" data-classtoggle-altclass="green">This link</a> will switch between <code>.red</code> and <code>.green</code> on the target element.</p>
-            <div class="target red" id="ex3-target">Target 3</div>
-            
-            <p>Code:</p>
-            <pre>&lt;p&gt;
-    &lt;a href="#ex3-target" data-classtoggle-class="red" 
-       data-classtoggle-altclass="green"&gt;Toggle&lt;/a&gt;
-&lt;/p&gt;
-&lt;div id="ex3-target" class="red"&gt;Target&lt;/div&gt;</pre>
-            
-            <h2>Toggle Muliple Clases on Targets</h2>
-            <p>Toggles multiple classes on a target element. Doesn&rsquo;t check to see if the additional classes already exist and simply toggles them. <a href="#ex4-targets" data-classtoggle-target=".ex4-targets" data-classtoggle-class="active,bordered">This link</a> will toggle the <code>.active and .bordered</code> classes on the example div elements below, which are in various states to demonstrate capabilities.</p>
-            <p>This example also demonstrates the ability to target elements based on a classname &ndash; in this particular case, <code>.ex4-targets</code>.</p>
-            <div id="ex4-targets">
-                <div class="ex4-targets target" id="ex4-target1">Target 4.1</div>
-                <div class="ex4-targets target active" id="ex4-target2">Target 4.2</div>
-                <div class="ex4-targets target bordered" id="ex4-target3">Target 4.3</div>
+            <h2 id="ex2">Toggling Multiple Classes</h2>
+            <p>Toggles between multiple, comma separated classes on a target element. Does not check for existence of the classes and simply toggles them all. <a href="#ex2-targets" data-classtoggle-class="active,bordered" data-classtoggle-target=".ex2-targets">This link</a> will toggle the <code>.active</code> class on the example div elements below.</p>
+            <p>Multiple target divs are shown below to demonstrate the capabilities with regards to multiple states.</p>
+            <div id="ex2-targets">
+                <div class="target ex2-targets" id="ex2-target1">Target 2.1</div>
+                <div class="target ex2-targets active" id="ex2-target2">Target 2.2</div>
+                <div class="target ex2-targets bordered" id="ex2-target3">Target 2.3</div>
             </div>
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="#ex4-target" data-classtoggle-class="active" 
-       data-classtoggle-trigger-activeclass="trigger-active"&gt;Toggle&lt;/a&gt;
+    &lt;a href="#ex1-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex4-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex1-target"&gt;Target&lt;/div&gt;</pre>
             
-            <h2>Toggle Two Classes and Toggle Multiple Triggers</h2>
-            <p>Switches between two classes on a target element and toggles an active class on all triggers matching <code>.triggerset</code>. Both <a href="#ex5-target" class="triggerset" data-classtoggle-class="red" data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" data-classtoggle-trigger-selector=".triggerset">this link</a> and <a href="#ex4-target" class="triggerset" data-classtoggle-class="red" data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" data-classtoggle-trigger-selector=".triggerset">this additional link</a> will toggle between <code>.red</code> and <code>.green</code> on the target element. Both links, regardless of which one triggered, will be targeted by <code>.triggerset</code> and have <code>.trigger-active</code> toggled on them.</p>
-            <div class="target red" id="ex5-target">Target 5</div>
+            <h2 id="ex3">Toggle Between Two Classes</h2>
+            <p>Switch between two classes on a target element. Checks to see if any of the main classes exists before toggling the alternate. <a href="#ex2-target" data-classtoggle-class="active" data-classtoggle-altclass="green">This link</a> will switch between <code>.red</code> and <code>.green</code> on the target element.</p>
+            <div class="target red" id="ex2-target">Target 3</div>
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="#ex5-target" class="triggerset" data-classtoggle-class="red" 
+    &lt;a href="#ex1-target" data-classtoggle-class="red" 
+       data-classtoggle-altclass="green"&gt;Toggle&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id="ex2-target" class="red"&gt;Target&lt;/div&gt;</pre>
+            
+            <h2 id="ex4">Toggle Class on Target and Trigger</h2>
+            <p>Toggles a class on a target element and the trigger. <a href="#ex3-target" data-classtoggle-class="active" data-classtoggle-trigger-activeclass="trigger-active">This link</a> will toggle the <code>.active</code> class on the example div element below and will toggle <code>.trigger-active</code> on itself.</p>
+            <div class="target" id="ex3-target">Target 4</div>
+            
+            <p>Code:</p>
+            <pre>&lt;p&gt;
+    &lt;a href="#ex3-target" data-classtoggle-class="active" 
+       data-classtoggle-trigger-activeclass="trigger-active"&gt;Toggle&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id="ex3-target"&gt;Target&lt;/div&gt;</pre>
+            
+            <h2 id="ex5">Toggle Two Classes and Toggle Multiple Triggers</h2>
+            <p>Switches between two classes on a target element and toggles an active class on all triggers matching <code>.triggerset</code>. Both <a href="#ex4-target" class="triggerset" data-classtoggle-class="red" data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" data-classtoggle-trigger-selector=".triggerset">this link</a> and <a href="#ex4-target" class="triggerset" data-classtoggle-class="red" data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" data-classtoggle-trigger-selector=".triggerset">this additional link</a> will toggle between <code>.red</code> and <code>.green</code> on the target element. Both links, regardless of which one triggered, will be targeted by <code>.triggerset</code> and have <code>.trigger-active</code> toggled on them.</p>
+            <div class="target red" id="ex4-target">Target 5</div>
+            
+            <p>Code:</p>
+            <pre>&lt;p&gt;
+    &lt;a href="#ex4-target" class="triggerset" data-classtoggle-class="red" 
        data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" 
        data-classtoggle-trigger-selector=".triggerset"&gt;Toggle 1&lt;/a&gt; and 
-    &lt;a href="#ex5-target" class="triggerset" data-classtoggle-class="red" 
+    &lt;a href="#ex4-target" class="triggerset" data-classtoggle-class="red" 
        data-classtoggle-altclass="green" data-classtoggle-trigger-activeclass="trigger-active" 
        data-classtoggle-trigger-selector=".triggerset"&gt;Toggle 2&lt;/a&gt;
 &lt;/p&gt;
 &lt;div id="ex4-target"&gt;Target&lt;/div&gt;</pre>
             
-            <h2>Toggling Classes and Retaining HREF</h2>
+            <h2 id="ex6">Toggling Classes and Retaining HREF</h2>
             <p>Where you want to use hyperlinks in cases where JavaScript may be disabled, you can use the <code>data-classtoggle-target</code> attribute. <a href="/ClassToggle/index.html" data-classtoggle-target="#ex6-target" data-classtoggle-class="active">This link</a> points to this page, but will target the DIV element below instead:</p>               
             <div class="target" id="ex6-target">Target 6</div>
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="/ClassToggle/index.html" data-classtoggle-target="#ex6-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
+    &lt;a href="/ClassToggle/index.html" data-classtoggle-target="#ex5-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex6-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex5-target"&gt;Target&lt;/div&gt;</pre>
           
         </div> <!-- /container -->
         
