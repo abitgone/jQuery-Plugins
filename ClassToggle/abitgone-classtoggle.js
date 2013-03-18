@@ -11,7 +11,7 @@
         This specifies the target element
     
     -   **data-classtoggle-class**  
-        The class to be toggled, on and off, by the trigger
+        The class, or comma-separated classes, to be toggled, on and off, by the trigger
     
     Additionally, you may specify the following additional class names:
     
@@ -90,18 +90,26 @@
             var $target = $(target);
             
             if (tcClass == undefined || $target == undefined) return;
+            tcClass = tcClass.split(',');
             
-            var targetMain = $target.hasClass(tcClass);
+            var targetMain = false;
+            for (var i=0;i<tcClass.length && targetMain==false;i++) {
+                targetMain = $target.hasClass(tcClass[i]);
+            }
             var targetAlt = tcClassAlt == undefined ? false : $target.hasClass(tcClassAlt);
             
             if (tcClassAlt == undefined) {
-                $target.toggleClass(tcClass);
+                for (var i=0;i<tcClass.length;i++) {
+                    $target.toggleClass(tcClass[i]);
+                }
             } else {
                 if((targetMain && targetAlt) || (!targetMain && !targetAlt)) {
                     $target.toggleClass(tcClassAlt);
                 } else {
                     $target.toggleClass(tcClassAlt);
-                    $target.toggleClass(tcClass);
+                    for (var i=0;i<tcClass.length;i++) {
+                        $target.toggleClass(tcClass[i]);
+                    }
                 }
             }
             
