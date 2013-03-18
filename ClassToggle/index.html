@@ -29,7 +29,7 @@
             <pre>&lt;p&gt;
     &lt;a href="#ex1-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex1-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex1-target"&gt;Target 1&lt;/div&gt;</pre>
             
             <h2 id="h-ex4">Toggling Multiple Classes</h2>
             <p>Toggles between multiple, comma separated classes on a target element. Does not check for existence of the classes and simply toggles them all. <a href="#ex2-targets" data-classtoggle-class="active,bordered" data-classtoggle-target=".ex2-targets">This link</a> will toggle the <code>.active</code> class on the example div elements below.</p>
@@ -42,9 +42,14 @@
             
             <p>Code:</p>
             <pre>&lt;p&gt;
-    &lt;a href="#ex1-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
+    &lt;a href="#ex2-targets" data-classtoggle-class="active,bordered"
+       data-classtoggle-target=".ex2-targets"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
-&lt;div id="ex1-target"&gt;Target&lt;/div&gt;</pre>
+&lt;div id="ex2-targets"&gt;
+    &lt;div id="ex2-target1" class="ex2-targets"&gt;Target 2.1&lt;/div&gt;
+    &lt;div id="ex2-target2" class="ex2-targets active"&gt;Target 2.2&lt;/div&gt;
+    &lt;div id="ex2-target3" class="ex2-targets bordered"&gt;Target 2.3&lt;/div&gt;
+&lt;/div&gt;</pre>
             
             <h2 id="ex3">Toggle Between Two Classes</h2>
             <p>Switch between two classes on a target element. Checks to see if any of the main classes exists before toggling the alternate. <a href="#ex2-target" data-classtoggle-class="active" data-classtoggle-altclass="green">This link</a> will switch between <code>.red</code> and <code>.green</code> on the target element.</p>
