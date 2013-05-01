@@ -54,114 +54,112 @@
     
 */
 !function (jQuery) {
-    
     // ClassToggle Public Class Definition
-    var ClassToggle = function (element, options) {
-        
-        this.$element = $(element)
-        this.options = $.extend({}, $.fn.classToggle.defaults, options)
-        
+    var ClassToggle = function(element, options) {
+
+        this.$element = $(element);
+        this.options = $.extend({}, $.fn.classToggle.defaults, options);
+
         if (this.options.parent) {
-          this.$parent = $(this.options.parent)
+            this.$parent = $(this.options.parent);                
         }
-        
-        this.options.classToggle && this.classToggle()
-        
+
+        this.options.classToggle && this.classToggle();
+
     }
-    
+
     ClassToggle.prototype = {
-        
+
         constructor: ClassToggle,
-        
-        classToggle: function (option) {
-            
-            $sender = $(this.options.sender);
-            
-            var tcClass = this.options.classtoggleClass;
-            var tcClassAlt = this.options.classtoggleAltclass;
-            var tcShowTarget = $sender.is("[data-classtoggle-showtarget]");
-            var tcTriggerClass = this.options.classtoggleTriggerActiveclass;
-            var tcTriggerSelector = this.options.classtoggleTriggerSelector;
-            var target = this.options.classtoggleTarget;
-            
-            if (target == undefined) {
-                target = $sender.attr('href') == undefined ? $sender.attr('href') : $sender[0].href;
-                target = target.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
+
+        classToggle: function() {
+
+            var $trigger = $(this.options.trigger),
+                $triggerTarget = $(this.options.triggerTarget);
+
+            var tcClass = this.options.classtoggleClass,
+                tcClassAlt = this.options.classtoggleAltclass,
+                tcTriggerClass = this.options.classtoggleTriggerActiveclass,
+                tcTriggerSelector = this.options.classtoggleTriggerSelector,
+                tcTarget = this.options.classtoggleTarget;
+
+            if (tcTarget == undefined) {
+                tcTarget = $trigger.attr('href') == undefined ? $trigger.attr('href') : this.options.trigger.href;
+                tcTarget = tcTarget.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
             }
-            if (target == undefined) return;
-            var $target = $(target);
-            
-            if (tcClass == undefined || $target == undefined) return;
-            tcClass = tcClass.split(',')
-            
+            if (tcTarget == undefined) return;
+            var $tcTarget = $(tcTarget);
+
+            if (tcClass == undefined || $tcTarget == undefined) return;
+            tcClass = tcClass.split(',');
+
             var targetMain = false;
-            for (var i=0;i<tcClass.length && targetMain == false;i++) {
-                targetMain = $target.hasClass(tcClass);
+            for (var i=0;i<tcClass.length && !targetMain; i++) {
+                targetMain = $tcTarget.hasClass(tcClass[i]);
             }
-            var targetAlt = tcClassAlt == undefined ? false : $target.hasClass(tcClassAlt);
-            
+            var targetAlt = tcClassAlt == undefined ? false : $tcTarget.hasClass(tcClassAlt);
+
             if (tcClassAlt == undefined) {
                 for (var i=0;i<tcClass.length;i++) {
-                    $target.toggleClass(tcClass);
+                    $tcTarget.toggleClass(tcClass[i]);
                 }
             } else {
-                if((targetMain && targetAlt) || (!targetMain && !targetAlt)) {
-                    $target.toggleClass(tcClassAlt);
+                if ((targetMain && targetAlt) || (!targetMain && !targetAlt)) {
+                    $tcTarget.toggleClass(tcClassAlt);
                 } else {
-                    $target.toggleClass(tcClassAlt);
+                    $tcTarget.toggleClass(tcClassAlt);
                     for (var i=0;i<tcClass.length;i++) {
-                        $target.toggleClass(tcClass);
+                        $tcTarget.toggleClass(tcClass[i]);
                     }
                 }
             }
-            
-            if (tcShowTarget) {
-                $target[0].scrollIntoView();
-            }
-            
+
             if (tcTriggerClass == undefined) return;
-            
-            var $triggers;
+
+            var $tcTriggers;
             if (tcTriggerSelector == undefined) {
-                $triggers = $sender;
+                $tcTriggers = $trigger;
             } else {
-                $triggers = $(tcTriggerSelector)
+                $tcTriggers = $(tcTriggerSelector);
             }
-            $triggers.toggleClass(tcTriggerClass);
-            
+            $tcTriggers.toggleClass(tcTriggerClass);
+
         }
+
     }
-    
-    // ClassToggle Plugin definition
-    $.fn.classToggle = function(option) {
-        return this.each(function () {
+
+    // ClassToggle Plugin Definition
+    $.fn.classToggle = function (option) {
+        this.each(function () {
+            // $this is the jQuery wrapped link that is clicked
             var $this = $(this),
                 data = $this.data('classToggle'),
                 options = typeof option == 'object' && option;
-                if (!data) $this.data('classToggle', (data = new ClassToggle(this, options)));
+            if (!data) $this.data('classToggle', (data = new ClassToggle(this, options)));
             if (typeof option == 'string') data[option]();
         });
     }
-    
+
     $.fn.classToggle.defaults = {
         classToggle: true
     };
-    
+
     $.fn.classToggle.Constructor = ClassToggle;
-    
+
     // ClassToggle Data-Api
-    $(function (){
-        $('body').on('click.classtoggle.data-api', '[data-classtoggle-class]', function (e) { 
+    $(function () {
+        $('body').on('click.classtoggle.data-api', '[data-classtoggle-class]', function (e) {
             var $this = $(this),
                 href,
                 target = $this.attr('data-classtoggle-target')
-                || e.preventDefault()
-                || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''), // Strip for IE7
-                option = $(target).data('classToggle') ? 'classToggle' : $this.data();
-            option.sender = e.target;
-            $(target).classToggle(option);
+                    || e.preventDefault()
+                    || (href = $this.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, ''),
+                option = $this.data('classToggle') ? 'classToggle' : $this.data();
+            option.trigger = e.target;
+            option.triggerTarget = target;
+            $(this).classToggle(option);
             if ($this.attr('data-classtoggle-target') && $this.attr('href')) e.preventDefault();
         });
-    });
-    
+    })
+
 }(window.jQuery);
