@@ -30,6 +30,42 @@ h3 {
     display: inline-block;
     border: 0.0769em solid rgba(0,0,0,0.125);
 }
+.target-offset-container {
+    width: 13.8125em;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.125);
+    position: relative;
+    margin: 1.25em 0;
+}
+.target-offset-group {
+    left: -100%;
+    width: 300%;
+    position: relative;
+    -webkit-transition: left 0.25s ease-in-out;
+    -moz-transition: left 0.25s ease-in-out;
+    -ms-transition: left 0.25s ease-in-out;
+    -o-transition: left 0.25s ease-in-out;
+    transition: left 0.25s ease-in-out;
+}
+.target-offset {
+    width: 33.333%;
+    display: inline-block;
+    line-height: 6.125em;
+    text-align: center;
+}
+.off-left .target-offset-group {
+    left: 0;
+}
+.off-right .target-offset-group {
+    left: -200%;
+}
+code {
+    white-space: nowrap;
+}
+.target-left { background-color: rgba(255,0,0,0.125);}
+.target-centre { background-color: rgba(255,255,0,0.125);}
+.target-right { background-color: rgba(0,255,0,0.125);}
+
 .active,
 .green {
     background-color: rgb(191,255,191);

@@ -99,17 +99,13 @@
             var targetAlt = tcClassAlt == undefined ? false : $tcTarget.hasClass(tcClassAlt);
 
             if (tcClassAlt == undefined) {
-                for (var i=0;i<tcClass.length;i++) {
-                    $tcTarget.toggleClass(tcClass[i]);
-                }
+                this.toggleClasses($tcTarget, tcClass);
             } else {
                 if ((targetMain && targetAlt) || (!targetMain && !targetAlt)) {
                     $tcTarget.toggleClass(tcClassAlt);
                 } else {
                     $tcTarget.toggleClass(tcClassAlt);
-                    for (var i=0;i<tcClass.length;i++) {
-                        $tcTarget.toggleClass(tcClass[i]);
-                    }
+                    this.toggleClasses($tcTarget, tcClass);
                 }
             }
 
@@ -123,6 +119,23 @@
             }
             $tcTriggers.toggleClass(tcTriggerClass);
 
+        },
+
+        toggleClasses: function($element, tcClassList) {
+            for (var i=0;i<tcClassList.length;i++) {
+                var match = tcClassList[i].match(/([-+]{2})?(\S+)/);
+                switch(match[1]) {
+                    case '--':
+                        $element.removeClass(match[2]);
+                        break;
+                    case '++':
+                        $element.addClass(match[2]);
+                        break;
+                    default:
+                        $element.toggleClass(match[2]);
+                        break;
+                }
+            }
         }
 
     }

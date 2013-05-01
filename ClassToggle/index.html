@@ -50,6 +50,31 @@
     &lt;div id="ex2-target2" class="ex2-targets active"&gt;Target 2.2&lt;/div&gt;
     &lt;div id="ex2-target3" class="ex2-targets bordered"&gt;Target 2.3&lt;/div&gt;
 &lt;/div&gt;</pre>
+
+            <h2 id="ex7">Explicitly adding and removing classes</h2>
+            <p>ClassToggle has the ability to explicitly add and remove classes instead of just toggling them. To do this, prepend your classnames with either double minus <code>--</code> to explicitly remove them, or double plus <code>++</code> to explicitly add them.</p>
+            <p>For example, the following links will change the state of the div below: <a href="#ex7-targets" data-classtoggle-class="++off-left,--off-right">Left</a>, <a href="#ex7-targets" data-classtoggle-class="--off-left,--off-right">Centre</a>, <a href="#ex7-targets" data-classtoggle-class="--off-left,++off-right">Right</a>.</p>
+            <div id="ex7-targets" class="target-offset-container">
+                <div class="target-offset-group">
+                    <div class="target-offset target-left">Left</div><!--
+                    --><div class="target-offset target-centre">Centre</div><!--
+                    --><div class="target-offset target-right">Right</div>
+                </div>
+            </div>
+
+            <p>Code:</p>
+            <pre>&lt;p&gt;
+    &lt;a href="#ex7-targets" data-classtoggle-class="++off-left,--off-right"&gt;Left&lt;/a&gt;
+    &lt;a href="#ex7-targets" data-classtoggle-class="--off-left,--off-right"&gt;Centre&lt;/a&gt;
+    &lt;a href="#ex7-targets" data-classtoggle-class="--off-left,++off-right"&gt;Right&lt;/a&gt;
+&lt;/p&gt;
+&lt;div id="ex7-targets" class="target-offset-container"&gt;
+    &lt;div class="target-offset-group"&gt;
+        &lt;div class="target-offset target-left"&gt;Left&lt;/div&gt;
+        &lt;div class="target-offset target-centre"&gt;Centre&lt;/div&gt;
+        &lt;div class="target-offset target-right"&gt;Right&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
             
             <h2 id="ex3">Toggle Between Two Classes</h2>
             <p>Switch between two classes on a target element. Checks to see if any of the main classes exists before toggling the alternate. <a href="#ex2-target" data-classtoggle-class="active" data-classtoggle-altclass="green">This link</a> will switch between <code>.red</code> and <code>.green</code> on the target element.</p>
