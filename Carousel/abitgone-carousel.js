@@ -171,8 +171,22 @@
             
             $carousel.addClass("carousel-ready");
             
-        },
-        touchstart: function(e) {
+      , post_initialise: function(){
+
+            // Handle instances where people have linked to a specific carousel item within the carousel
+            // using a URL hash fragment. Doing so breaks the carousel. This resets it.
+            // 
+            // Thanks to Andrej2 for reporting this:
+            // https://github.com/abitgone/jQuery-Plugins/issues/10
+
+            if (this.carousel.scrollLeft != 0 ||
+                this.carousel.scrollTop != 0) {
+                this.carousel.scrollLeft = 0;
+                this.carousel.scrollTop = 0;
+            }
+
+        }
+      , touchstart: function(e) {
             var touch = e.originalEvent.touches[0];
             this.touch_origin_x = touch.clientX;
             this.touch_origin_y = touch.clientY;
@@ -374,6 +388,12 @@
     // Carousel Data-Api
     $(function() {
         $("[data-carousel]").abg_carousel('initialise');
+        window.setTimeout(
+            function () {
+                $("[data-carousel]").abg_carousel('post_initialise');
+            },
+            0
+        );
     });
     
 }(window.jQuery);
