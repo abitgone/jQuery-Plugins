@@ -97,7 +97,6 @@
                 case "class-only":
                     $carousel.addClass("carousel-classonly");
                     if (!$carousel.is("[data-carousel-noabsolute-items]")) {
-                        console.log("NO ABSOLUTE!");
                         $container.css('position', 'relative');
                         $items.each(function() { 
                             $(this).css('position', 'absolute').css('top', '0').css('left', '0').css('width', '100%');
