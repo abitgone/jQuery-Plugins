@@ -96,10 +96,12 @@
                     break;
                 case "class-only":
                     $carousel.addClass("carousel-classonly");
-                    $container.css('position', 'relative');
-                    $items.each(function() { 
-                        $(this).css('position', 'absolute').css('top', '0').css('left', '0').css('width', '100%');
-                    });
+                    if (!$carousel.is("[data-carousel-noabsolute-items]")) {
+                        $container.css('position', 'relative');
+                        $items.each(function() { 
+                            $(this).css('position', 'absolute').css('top', '0').css('left', '0').css('width', '100%');
+                        });
+                    }
                     this.lock_x = 0;
                     this.lock_y = 0;
                     break;
@@ -168,6 +170,7 @@
             
             // Add .active-item to first item
             $($items[0]).addClass("active-item");
+            $carousel.addClass("carousel-item-0");
             
             $carousel.addClass("carousel-ready");
             
@@ -253,8 +256,11 @@
         change_position: function($carousel, $items, item_index) {
             
             var $container = $carousel.find("[data-carousel-items]");
+            var currentItemIndex = parseInt($carousel.attr("data-carousel-item"));
             
             $items.removeClass("active-item");
+            $carousel.removeClass("carousel-item-" + currentItemIndex);
+            $carousel.addClass("carousel-item-" + item_index);
             $($items[item_index]).addClass("active-item");
             $carousel.attr("data-carousel-item", item_index);
             switch($carousel.attr("data-carousel-style")) {
