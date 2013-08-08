@@ -58,7 +58,7 @@
               , $pager_prev
               , $pager_next
               , no_pagers = $pagers.length == 0;
-                          
+
             if (!no_pagers) {
                 // Clone the first prev/next pagers and repurpose them
                 $pager_prev = $($carousel.find("[data-carousel-item] .pager-prev")[0]).clone();
@@ -170,7 +170,20 @@
             $($items[0]).addClass("active-item");
             
             $carousel.addClass("carousel-ready");
-            
+
+        }
+      , post_initialise: function(){
+
+            // Handle instances where people have linked to a specific carousel item within the carousel
+            // using a URL hash fragment. Doing so breaks the carousel. This resets it.
+            // 
+            // Thanks to Andrej2 for reporting this:
+            // https://github.com/abitgone/jQuery-Plugins/issues/10
+
+            if (this.carousel.scrollLeft != 0) {
+                this.carousel.scrollLeft = 0;
+            }
+
         }
       , touchstart: function(e) {
             var touch = e.originalEvent.touches[0];
@@ -374,6 +387,12 @@
     // Carousel Data-Api
     $(function() {
         $("[data-carousel]").abg_carousel('initialise');
+        window.setTimeout(
+            function () {
+                $("[data-carousel]").abg_carousel('post_initialise');
+            },
+            0
+        );
     });
     
 }(window.jQuery);
