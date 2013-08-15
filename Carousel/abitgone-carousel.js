@@ -173,7 +173,7 @@
             $carousel.addClass("carousel-item-0");
             
             $carousel.addClass("carousel-ready");
-            
+        }
       , post_initialise: function(){
 
             // Handle instances where people have linked to a specific carousel item within the carousel
