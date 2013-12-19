@@ -103,6 +103,7 @@
             var tcOptions = {
                 "triggerNode":          triggerNode,
                 "$tcTarget":            $tcTarget,
+                "$trigger":             $trigger,
                 "tcClass":              tcClass,
                 "tcClassAlt":           tcClassAlt,
                 "tcTriggerClass":       tcTriggerClass,
