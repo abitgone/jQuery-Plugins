@@ -1,7 +1,5 @@
 # jQuery Plugins
 
-**Notice: The jQuery Plugins have been tested and work with the beta 1 release of jQuery 2.0.**
-
 These jQuery plugins have been created to ease the pain that some front-end designers feel when they're trying to implement basic features with little or no JavaScript or jQuery experience.
 
 I plan to add plugins to this repository over time that only require HTML code, data-* attributes, and the inclusion of the script in question, following the same kind of principles as the Twitter Bootstrap extensions, in so far that no coding experience should be required in order to make things work.
