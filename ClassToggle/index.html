@@ -31,6 +31,69 @@
 &lt;/p&gt;
 &lt;div id="ex1-target"&gt;Target 1&lt;/div&gt;</pre>
             
+            <h2 id="h-ex8">Toggling using Checkboxes and Radiobuttons</h2>
+
+            <label class="radio">
+                <input type="radio" name="ex8-radio" id="ex8-radio-yes" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-yes" /> 
+                Yes
+            </label> 
+            <label class="radio">
+                <input type="radio" name="ex8-radio" id="ex8-radio-no" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-no" /> 
+                No
+            </label>
+            <label class="radio">
+                <input type="radio" name="ex8-radio" id="ex8-radio-maybe" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-maybe" /> 
+                Maybe
+            </label>
+            
+            <label class="checkbox">
+                <input type="checkbox" id="ex8-check" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-check" /> 
+                Toggle Checkbox Target
+            </label>
+
+
+            <div id="ex8-targets">
+                <div class="target ex8-targets" id="ex8-target-radio-yes">Radio: Yes</div>
+                <div class="target ex8-targets" id="ex8-target-radio-no">Radio: No</div>
+                <div class="target ex8-targets" id="ex8-target-radio-maybe">Radio: Maybe</div>
+                <div class="target ex8-targets" id="ex8-target-check">Check</div>
+            </div>
+
+            <p>Code:</p>
+            <pre>&lt;p&gt;Some radiobuttons:&lt;/p&gt;
+
+&lt;label&gt;
+    &lt;input type="radio" name="ex8-radio" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-yes" /&gt;
+    Yes
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="radio" name="ex8-radio" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-no" /&gt;
+    No
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="radio" name="ex8-radio" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-maybe" /&gt;
+    Maybe
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="checkbox" data-classtoggle-class="active" data-classtoggle-target="#ex8-target-radio-check" /&gt;
+    Check
+&lt;/label&gt;
+
+&lt;div id="ex8-targets"&gt;
+    &lt;div id="ex8-radio-yes"&gt;
+        Radio: Yes
+    &lt;/div&gt;
+    &lt;div id="ex8-radio-no"&gt;
+        Radio: No
+    &lt;/div&gt;
+    &lt;div id="ex8-radio-maybe"&gt;
+        Radio: Maybe
+    &lt;/div&gt;
+    &lt;div id="ex8-check-target"&gt;
+        Check
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
             <h2 id="h-ex4">Toggling Multiple Classes</h2>
             <p>Toggles between multiple, comma separated classes on a target element. Does not check for existence of the classes and simply toggles them all. <a href="#ex2-targets" data-classtoggle-class="active,bordered" data-classtoggle-target=".ex2-targets">This link</a> will toggle the <code>.active</code> class on the example div elements below.</p>
             <p>Multiple target divs are shown below to demonstrate the capabilities with regards to multiple states.</p>
