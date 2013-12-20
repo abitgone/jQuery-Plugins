@@ -139,8 +139,7 @@
         toggleClassesFromElement: function(tcOptions, isInputElement) {
 
             // Normal behaviour -- this will just indiscriminately toggle classes on a per-click basis, though for input
-            // elements, toggling a class on the trigger is not yet available (I haven't had a chance to test it well
-            // enough yet to include it right now).
+            // elements, 
 
             if (tcOptions.tcClassAlt == undefined || isInputElement) {
                 tcOptions.tcThis.toggleClasses(tcOptions.$tcTarget, tcOptions.tcClass);
@@ -153,9 +152,7 @@
                 }
             }
 
-            // If there is no trigger class, or if the trigger is an input element, don't bother with the triggers
-
-            if (tcOptions.tcTriggerClass == undefined || isInputElement) return;
+            if (tcOptions.tcTriggerClass == undefined) return;
 
             var $tcTriggers;
             if (tcOptions.tcTriggerSelector == undefined) {
@@ -181,13 +178,15 @@
             //     true             |  ++class-name         |  ++class-name (no change)
             //     true             |  --class-name         |  ++class-name (thus explicitly adding it)
             
+            var tcBaseRegex = /([+-]{2})?([^\s,$]+)/g;
+
             tcOptions.tcClassOriginal = tcOptions.tcClass;
-            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(/(\+\+|--)?\b(\w)/g, (tcOptions.triggerNode.checked ? "++" : "--") + "$2").split(",");
+            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(tcBaseRegex, (tcOptions.triggerNode.checked ? "++" : "--") + "$2").split(",");
             this.toggleClassesFromElement(tcOptions);
 
             if (isRadioButton) {
                 var $tcRadioButtons = $("input[type=radio][name=" + tcOptions.triggerNode.name + "]").not($(tcOptions.triggerNode)),
-                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(/(\+\+|--)?\b(\w)/g, (tcOptions.triggerNode.checked ? "--" : "++") + "$2").split(",");
+                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(tcBaseRegex, (tcOptions.triggerNode.checked ? "--" : "++") + "$2").split(",");
 
                 for (var i = 0; i < $tcRadioButtons.length; i++) {
                     tcOtherTargets = $($tcRadioButtons[i]).attr("data-classtoggle-target");
@@ -198,7 +197,7 @@
 
         },
 
-        toggleClasses: function($element, tcClassList) {
+        toggleClasses: function ($element, tcClassList) {
             for (var i=0;i<tcClassList.length;i++) {
                 var match = tcClassList[i].match(/([-+]{2})?(\S+)/);
                 switch(match[1]) {
