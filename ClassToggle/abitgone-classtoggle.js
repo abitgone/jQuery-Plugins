@@ -175,21 +175,21 @@
             //     =================|=======================|==============================================
             //     false (default)  |  class-name           |  --class-name (thus explicitly removing it)
             //     false (default)  |  ++class-name         |  --class-name (thus explicitly removing it)
-            //     false (default)  |  --class-name         |  --class-name (no change)
+            //     false (default)  |  --class-name         |  ++class-name (thus explicitly adding it)
             //     -----------------|-----------------------|----------------------------------------------
             //     true             |  class-name           |  ++class-name (thus explicitly adding it)
             //     true             |  ++class-name         |  ++class-name (no change)
-            //     true             |  --class-name         |  ++class-name (thus explicitly adding it)
+            //     true             |  --class-name         |  --class-name (thus explicitly removing it)
             
-            var tcBaseRegex = /([+-]{2})?([^\s,$]+)/g;
+            var tcRegex = /([\+-]{2})?([^\s,$]+)/g;
 
             tcOptions.tcClassOriginal = tcOptions.tcClass;
-            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(tcBaseRegex, (tcOptions.triggerNode.checked ? "++" : "--") + "$2").split(",");
+            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(tcRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Checked : this.toggleClassEvaluator_Unchecked).split(",");
             this.toggleClassesFromElement(tcOptions);
-
+            
             if (isRadioButton) {
                 var $tcRadioButtons = $("input[type=radio][name=" + tcOptions.triggerNode.name + "]").not($(tcOptions.triggerNode)),
-                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(tcBaseRegex, (tcOptions.triggerNode.checked ? "--" : "++") + "$2").split(",");
+                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(tcRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Unchecked : this.toggleClassEvaluator_Checked).split(",");
 
                 for (var i = 0; i < $tcRadioButtons.length; i++) {
                     tcOtherTargets = $($tcRadioButtons[i]).attr("data-classtoggle-target");
@@ -198,6 +198,22 @@
 
             }
 
+        },
+        toggleClassEvaluator_Checked: function(match, p1, p2) {
+            if (p1 == "--") {
+                return "--" + p2;
+            }
+            else {
+                return "++" + p2;
+            }
+        },
+        toggleClassEvaluator_Unchecked: function(match, p1, p2) {
+            if (p1 == "--") {
+                return "++" + p2;
+            }
+            else {
+                return "--" + p2;
+            }
         },
 
         toggleClasses: function($element, tcClassList) {

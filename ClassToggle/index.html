@@ -51,7 +51,6 @@
                 Toggle Checkbox Target
             </label>
 
-
             <div id="ex8-targets">
                 <div class="target ex8-targets" id="ex8-target-radio-yes">Radio: Yes</div>
                 <div class="target ex8-targets" id="ex8-target-radio-no">Radio: No</div>
@@ -93,6 +92,45 @@
         Check
     &lt;/div&gt;
 &lt;/div&gt;</pre>
+
+            <h3>Reverse toggling</h3>
+            <p>Sometimes, you want to remove classes when a checkbox or radiobutton is checked and add them back when they're unchecked – a reverse toggle of sorts. To do this, simply prefix your code with the double-minus explicit remove token:</p>
+
+            <label class="checkbox">
+                <input type="checkbox" id="ex8-check" data-classtoggle-class="--active" data-classtoggle-target="#ex8-target-check-remove" /> 
+                Remove Class when Checked
+            </label>
+            <label class="checkbox">
+                <input type="checkbox" id="ex8-check" data-classtoggle-class="++active" data-classtoggle-target="#ex8-target-check-add" /> 
+                Add Class when Checked
+            </label>
+
+            <div id="ex8-targets-explicit">
+                <div class="target ex8-targets active" id="ex8-target-check-remove">Remove when Checked</div>
+                <div class="target ex8-targets" id="ex8-target-check-add">Add when Checked</div>
+            </div>
+
+            <p>Code:</p>
+            <pre>lt;p&gt;Some checkboxes:&lt;/p&gt;
+
+&lt;label&gt;
+    &lt;input type="checkbox" data-classtoggle-class="--active" data-classtoggle-target="#ex8-target-check-remove" /&gt;
+    Check
+&lt;/label&gt;
+&lt;label&gt;
+    &lt;input type="checkbox" data-classtoggle-class="++active" data-classtoggle-target="#ex8-target-check-add" /&gt;
+    Check
+&lt;/label&gt;
+
+&lt;div id="ex8-targets"&gt;
+    &lt;div id="ex8-target-check-remove" class="active"&gt;
+        Remove when Checked
+    &lt;/div&gt;
+    &lt;div id="ex8-target-check-add"&gt;
+        Add when Checked
+    &lt;/div&gt;
+&lt;/div&gt;</pre>
+
 
             <h2 id="h-ex4">Toggling Multiple Classes</h2>
             <p>Toggles between multiple, comma separated classes on a target element. Does not check for existence of the classes and simply toggles them all. <a href="#ex2-targets" data-classtoggle-class="active,bordered" data-classtoggle-target=".ex2-targets">This link</a> will toggle the <code>.active</code> class on the example div elements below.</p>
