@@ -178,13 +178,15 @@
             //     true             |  ++class-name         |  ++class-name (no change)
             //     true             |  --class-name         |  ++class-name (thus explicitly adding it)
             
+            var tcBaseRegex = /([+-]{2})?([^\s,$]+)/g;
+
             tcOptions.tcClassOriginal = tcOptions.tcClass;
-            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(/(\+\+|--)?\b(\w)/g, (tcOptions.triggerNode.checked ? "++" : "--") + "$2").split(",");
+            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(tcBaseRegex, (tcOptions.triggerNode.checked ? "++" : "--") + "$2").split(",");
             this.toggleClassesFromElement(tcOptions);
 
             if (isRadioButton) {
                 var $tcRadioButtons = $("input[type=radio][name=" + tcOptions.triggerNode.name + "]").not($(tcOptions.triggerNode)),
-                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(/(\+\+|--)?\b(\w)/g, (tcOptions.triggerNode.checked ? "--" : "++") + "$2").split(",");
+                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(tcBaseRegex, (tcOptions.triggerNode.checked ? "--" : "++") + "$2").split(",");
 
                 for (var i = 0; i < $tcRadioButtons.length; i++) {
                     tcOtherTargets = $($tcRadioButtons[i]).attr("data-classtoggle-target");
