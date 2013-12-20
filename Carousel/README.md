@@ -1,7 +1,5 @@
 # Carousel
 
-**Notice: The Carousel plugin has been tested and works with the beta 1 release of jQuery 2.0.**
-
 Carousel takes simple HTML- and CSS-only carousels and progressively enhances them with features such as page lists, scrolling, class-toggling, timers, timer offsets as well as touch and keyboard events. By following a basic HTML pattern and using some basic CSS, your carousels will also work, to a degree, without JavaScript enabled.
 
 Your carousels can be extended using the following attributes:
