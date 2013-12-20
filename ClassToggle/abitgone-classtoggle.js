@@ -139,7 +139,8 @@
         toggleClassesFromElement: function(tcOptions, isInputElement) {
 
             // Normal behaviour -- this will just indiscriminately toggle classes on a per-click basis, though for input
-            // elements, 
+            // elements, toggling a class on the trigger is not yet available (I haven't had a chance to test it well
+            // enough yet to include it right now).
 
             if (tcOptions.tcClassAlt == undefined || isInputElement) {
                 tcOptions.tcThis.toggleClasses(tcOptions.$tcTarget, tcOptions.tcClass);
@@ -152,7 +153,9 @@
                 }
             }
 
-            if (tcOptions.tcTriggerClass == undefined) return;
+            // If there is no trigger class, or if the trigger is an input element, don't bother with the triggers
+
+            if (tcOptions.tcTriggerClass == undefined || isInputElement) return;
 
             var $tcTriggers;
             if (tcOptions.tcTriggerSelector == undefined) {
@@ -197,7 +200,7 @@
 
         },
 
-        toggleClasses: function ($element, tcClassList) {
+        toggleClasses: function($element, tcClassList) {
             for (var i=0;i<tcClassList.length;i++) {
                 var match = tcClassList[i].match(/([-+]{2})?(\S+)/);
                 switch(match[1]) {
