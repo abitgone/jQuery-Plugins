@@ -1,0 +1,3 @@
+[submodule "snapslider"]
+	path = snapslider
+	url = git@github.com:abitgone/snapslider.git
