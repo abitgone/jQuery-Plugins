@@ -167,6 +167,9 @@
             $tcTriggers.toggleClass(tcOptions.tcTriggerClass);
 
         },
+
+        toggleClassRegex: /([\+-]{2})?([^\s,$]+)/g,
+
         toggleClassesFromInput: function(tcOptions, isRadioButton) {
 
             // Checkbox behaviour -- this is different to the normal behaviour and attempts to modify the classes that
@@ -182,15 +185,13 @@
             //     true             |  ++class-name         |  ++class-name (no change)
             //     true             |  --class-name         |  --class-name (thus explicitly removing it)
             
-            var tcRegex = /([\+-]{2})?([^\s,$]+)/g;
-
             tcOptions.tcClassOriginal = tcOptions.tcClass;
-            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(tcRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Checked : this.toggleClassEvaluator_Unchecked).split(",");
+            tcOptions.tcClass = tcOptions.tcClass.join(",").replace(this.toggleClassRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Checked : this.toggleClassEvaluator_Unchecked).split(",");
             this.toggleClassesFromElement(tcOptions);
             
             if (isRadioButton) {
                 var $tcRadioButtons = $("input[type=radio][name=" + tcOptions.triggerNode.name + "]").not($(tcOptions.triggerNode)),
-                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(tcRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Unchecked : this.toggleClassEvaluator_Checked).split(",");
+                    tcOtherInputClass = tcOptions.tcClassOriginal.join(",").replace(this.toggleClassRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Unchecked : this.toggleClassEvaluator_Checked).split(",");
 
                 for (var i = 0; i < $tcRadioButtons.length; i++) {
                     tcOtherTargets = $($tcRadioButtons[i]).attr("data-classtoggle-target");
