@@ -56,8 +56,9 @@
     // ClassToggle Public Class Definition
     var ClassToggle = function(element, options) {
 
+        this.element  = element;
         this.$element = $(element);
-        this.options = $.extend({}, $.fn.classToggle.defaults, options);
+        this.options  = $.extend({}, $.fn.classToggle.defaults, options);
 
         if (this.options.parent) {
             this.$parent = $(this.options.parent);                
