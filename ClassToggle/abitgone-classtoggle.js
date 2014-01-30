@@ -81,21 +81,49 @@
                 tcClassAlt = this.options.classtoggleAltclass,
                 tcTriggerClass = this.options.classtoggleTriggerActiveclass,
                 tcTriggerSelector = this.options.classtoggleTriggerSelector,
-                tcTarget = this.options.classtoggleTarget;
+                tcTarget = this.options.classtoggleTarget,
+                $tcTarget;
 
-            if (tcTarget == undefined) {
-                tcTarget = $trigger.attr('href') == undefined ? $trigger.attr('href') : this.options.trigger.href;
-                tcTarget = tcTarget.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
+            //  ClassToggle behaves differently depending on the type of element that it is applied to
+            switch (this.element.nodeName.toLowerCase()) {
+                case "input":
+                    switch (this.$element.attr("type").toLowerCase()) {
+                        case "radio":
+                            this.options.tcMode = "radio";
+                            break;
+                        case "checkbox":
+                            this.options.tcMode = "checkbox";
+                            break;
+                        default:
+                            this.options.tcMode = "input";
+                            break;
+                    }
+                    break;
+                case "select":
+                    this.options.tcMode = "select";
+                    break;
+                default:
+                    this.options.tcMode = "";
+                    break;
             }
-            if (tcTarget == undefined) return;
-            var $tcTarget = $(tcTarget);
 
-            if (tcClass == undefined || $tcTarget == undefined) return;
+            //  We only need to obtain target information if we're not in "select" mode
+            if (this.options.tcMode != "select") {
+                //  If there's no target and a href exists, use that instead
+                if (!tcTarget) {
+                    tcTarget = $trigger.attr('href') == undefined ? $trigger.attr('href') : this.options.trigger.href;
+                    tcTarget = tcTarget && tcTarget.replace(/.*(?=#[^\s]+$)/, ''); // Strip for IE7
+                }
+                if (tcTarget == undefined) return;
+                $tcTarget = $(tcTarget);
+            }
+            
+            if (tcClass == undefined || $tcTarget == undefined && this.options.tcMode != "select") return;
             tcClass = tcClass.split(',');
 
             var targetMain = false;
             for (var i=0;i<tcClass.length && !targetMain; i++) {
-                targetMain = $tcTarget.hasClass(tcClass[i]);
+                targetMain = $tcTarget && $tcTarget.hasClass(tcClass[i]);
             }
             var targetAlt = tcClassAlt == undefined ? false : $tcTarget.hasClass(tcClassAlt);
 
@@ -114,27 +142,23 @@
                 "tcThis":               this
             };
 
-            if (triggerNode.nodeName.toLowerCase() == "input") {
-                switch(triggerNode.type.toLowerCase()) {
-                    case "radio":
-                        // A radiobutton triggered the toggle 
-                        this.toggleClassesFromInput(tcOptions, true);
-                        break;
-                    case "checkbox":
-                        // A checkbox triggered the toggle
-                        this.toggleClassesFromInput(tcOptions, false);
-                        break;
-                    default:
-                        // Another input element triggered the toggle -- treat as normal
-                        this.toggleClassesFromElement(tcOptions, true);
-                        break;
-                }
+            switch (this.options.tcMode) {
+                case "radio":
+                    this.toggleClassesFromInput(tcOptions, true);
+                    break;
+                case "checkbox":
+                    this.toggleClassesFromInput(tcOptions, false);
+                    break;
+                case "input":
+                    this.toggleClassesFromElement(tcOptions, true);
+                    break;
+                case "select":
+                    this.toggleClassesFromSelect(tcOptions, true);
+                    break;
+                default:
+                    this.toggleClassesFromElement(tcOptions, false);
+                    break;
             }
-            else {
-                // A non-input element triggered the toggle -- treat as normal
-                this.toggleClassesFromElement(tcOptions, false);
-            }
-
         },
 
         toggleClassesFromElement: function(tcOptions, isInputElement) {
@@ -200,6 +224,20 @@
 
             }
 
+        },
+        toggleClassesFromSelect: function(tcOptions) {
+            var $allOptions = this.$element.find("option[data-classtoggle-target]");
+
+            for (var i = 0; i < $allOptions.length; i++) {
+                var selectOption = $allOptions[i];
+                var $selectOption = $(selectOption);
+
+                var optionClass = $selectOption.attr("data-classtoggle-class");
+
+                optionClass = (optionClass && optionClass.split(",")) || tcOptions.tcClass;
+                optionClass = optionClass.join(",").replace(this.toggleClassRegex, selectOption.selected ? this.toggleClassEvaluator_Checked : this.toggleClassEvaluator_Unchecked).split(",");
+                this.toggleClasses($($selectOption.attr("data-classtoggle-target")), optionClass);
+            }
         },
         toggleClassEvaluator_Checked: function(match, p1, p2) {
             if (p1 == "--") {
