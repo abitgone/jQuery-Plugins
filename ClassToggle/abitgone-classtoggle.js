@@ -188,7 +188,9 @@
             } else {
                 $tcTriggers = $(tcOptions.tcTriggerSelector);
             }
-            $tcTriggers.toggleClass(tcOptions.tcTriggerClass);
+
+            var triggerClass = tcOptions.tcTriggerClass.split(",");
+            tcOptions.tcThis.toggleClasses($tcTriggers, triggerClass);
 
         },
 
