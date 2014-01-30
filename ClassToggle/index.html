@@ -31,6 +31,40 @@
 &lt;/p&gt;
 &lt;div id="ex1-target"&gt;Target 1&lt;/div&gt;</pre>
             
+            <h2 id="h-ex-select">Toggling using Select elements</h2>
+            <p>Much like checkboxes and radiobuttons, you can use a <code>&lt;select&gt;</code> element to trigger class changes on multiple targets. The class name to toggle can be set for all <code>&lt;option&gt;</code> elements, or individually on each option, using <code>data-classtoggle-target</code>. Targets are set using <code>data-classtoggle-target</code> on each individual <code>&lt;option&gt;</code>.</p>
+
+            <label>Select one: <select data-classtoggle-class="active">
+                <option>Select one&hellip;</option>
+                <option data-classtoggle-target="#ex-select-1" value="/item/1">Item 1</option>
+                <option data-classtoggle-target="#ex-select-2" value="/item/2">Item 2</option>
+                <option data-classtoggle-target="#ex-select-3" value="/item/3">Item 3</option>
+                <option data-classtoggle-target="#ex-select-4" data-classtoggle-class="red" value="/item/4">Item 4 (Red)</option>
+            </select></label>
+
+            <div id="ex8-targets">
+                <div class="target ex-targets" id="ex-select-1">Item 1</div>
+                <div class="target ex-targets" id="ex-select-2">Item 2</div>
+                <div class="target ex-targets" id="ex-select-3">Item 3</div>
+                <div class="target ex-targets" id="ex-select-4">Item 4</div>
+            </div>
+
+            <p>Code:</p>
+            <pre>&lt;label&gt;Select one: &lt;select data-classtoggle-class="active"&gt;
+    &lt;option&gt;Select one&hellip;&lt;/option&gt;
+    &lt;option data-classtoggle-target="#ex-select-1" value="/item/1"&gt;Item 1&lt;/option&gt;
+    &lt;option data-classtoggle-target="#ex-select-2" value="/item/2"&gt;Item 2&lt;/option&gt;
+    &lt;option data-classtoggle-target="#ex-select-3" value="/item/3"&gt;Item 3&lt;/option&gt;
+    &lt;option data-classtoggle-target="#ex-select-4" data-classtoggle-class="red" value="/item/4"&gt;Item 4 (Red)&lt;/option&gt;
+&lt;/select&gt;&lt;/label&gt;
+
+&lt;div id="ex8-targets"&gt;
+    &lt;div class="target ex-targets" id="ex-select-1"&gt;Item 1&lt;/div&gt;
+    &lt;div class="target ex-targets" id="ex-select-2"&gt;Item 2&lt;/div&gt;
+    &lt;div class="target ex-targets" id="ex-select-3"&gt;Item 3&lt;/div&gt;
+    &lt;div class="target ex-targets" id="ex-select-4"&gt;Item 4&lt;/div&gt;
+&lt;/div&gt;</pre>
+
             <h2 id="h-ex8">Toggling using Checkboxes and Radiobuttons</h2>
 
             <label class="radio">
