@@ -297,7 +297,11 @@
 
     // ClassToggle Data-Api
     $(function () {
-        $('body').on('click.classtoggle.data-api', '[data-classtoggle-class]', function (e) {
+        $('body').on('click.classtoggle.data-api change.classtoggle.data-api', '[data-classtoggle-class]', function (e) {
+
+            var eventTarget = e.target || e.srcElement;
+            if (eventTarget.nodeName.toLowerCase() == "select" && e.type.toLowerCase() != "change") return;
+
             var $this = $(this),
                 href,
                 target = $this.attr('data-classtoggle-target')
