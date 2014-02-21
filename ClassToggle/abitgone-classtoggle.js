@@ -230,6 +230,12 @@
         toggleClassesFromSelect: function(tcOptions) {
             var $allOptions = this.$element.find("option[data-classtoggle-target]");
 
+            //  Sort the options so that the selected options are toggled last (in case of multiple elements with a
+            //  single target)
+            $allOptions.sort(function(a, b) {
+                return (a.selected ? 1 : -1);
+            })
+
             for (var i = 0; i < $allOptions.length; i++) {
                 var selectOption = $allOptions[i];
                 var $selectOption = $(selectOption);
