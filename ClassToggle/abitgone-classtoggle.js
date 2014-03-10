@@ -213,7 +213,6 @@
             
             tcOptions.tcClassOriginal = tcOptions.tcClass;
             tcOptions.tcClass = tcOptions.tcClass.join(",").replace(this.toggleClassRegex, tcOptions.triggerNode.checked ? this.toggleClassEvaluator_Checked : this.toggleClassEvaluator_Unchecked).split(",");
-            this.toggleClassesFromElement(tcOptions);
             
             if (isRadioButton) {
                 var $tcRadioButtons = $("input[type=radio][name=" + tcOptions.triggerNode.name + "]").not($(tcOptions.triggerNode)),
@@ -223,8 +222,9 @@
                     tcOtherTargets = $($tcRadioButtons[i]).attr("data-classtoggle-target");
                     this.toggleClasses($(tcOtherTargets), tcOtherInputClass);
                 };
-
             }
+
+            this.toggleClassesFromElement(tcOptions);           
 
         },
         toggleClassesFromSelect: function(tcOptions) {
