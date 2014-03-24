@@ -163,6 +163,21 @@
 
         toggleClassesFromElement: function(tcOptions, isInputElement) {
 
+            // In order to enable behaviour that simulates tabbing, toggle the classes on the trigger elements first, 
+            // but if there is no trigger class, or if the trigger is an input element, don't bother with the triggers.
+
+            if (!(tcOptions.tcTriggerClass == undefined || isInputElement)) {
+                var $tcTriggers;
+                if (tcOptions.tcTriggerSelector == undefined) {
+                    $tcTriggers = tcOptions.$trigger;
+                } else {
+                    $tcTriggers = $(tcOptions.tcTriggerSelector);
+                }
+
+                var triggerClass = tcOptions.tcTriggerClass.split(",");
+                tcOptions.tcThis.toggleClasses($tcTriggers, triggerClass);
+            }
+
             // Normal behaviour -- this will just indiscriminately toggle classes on a per-click basis, though for input
             // elements, toggling a class on the trigger is not yet available (I haven't had a chance to test it well
             // enough yet to include it right now).
@@ -177,20 +192,6 @@
                     tcOptions.tcThis.toggleClasses(tcOptions.$tcTarget, tcOptions.tcClass);
                 }
             }
-
-            // If there is no trigger class, or if the trigger is an input element, don't bother with the triggers
-
-            if (tcOptions.tcTriggerClass == undefined || isInputElement) return;
-
-            var $tcTriggers;
-            if (tcOptions.tcTriggerSelector == undefined) {
-                $tcTriggers = tcOptions.$trigger;
-            } else {
-                $tcTriggers = $(tcOptions.tcTriggerSelector);
-            }
-
-            var triggerClass = tcOptions.tcTriggerClass.split(",");
-            tcOptions.tcThis.toggleClasses($tcTriggers, triggerClass);
 
         },
 
