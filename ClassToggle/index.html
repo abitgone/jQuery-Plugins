@@ -257,7 +257,58 @@
     &lt;a href="/ClassToggle/index.html" data-classtoggle-target="#ex6-target" data-classtoggle-class="active"&gt;Toggle&lt;/a&gt;
 &lt;/p&gt;
 &lt;div id="ex6-target"&gt;Target 6&lt;/div&gt;</pre>
-          
+       
+            <h2 id="ex-tabs">Using ClassToggle as a rudimentary Tab Controller</h2>
+            <p>ClassToggle can be used to toggle a set of target elements in the same way as a tab controller.</p>
+
+            <p>
+                <a id="ex-tablink1" class="ex-tablinks" href="#ex-tab1" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                                        data-classtoggle-target="#ex-tab1, #ex-tablink1" 
+                                                                        data-classtoggle-trigger-activeclass="--active">Link 1</a>,
+                <a id="ex-tablink2" class="ex-tablinks" href="#ex-tab2" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                                        data-classtoggle-target="#ex-tab2, #ex-tablink2" 
+                                                                        data-classtoggle-trigger-activeclass="--active">Link 2</a>,
+                <a id="ex-tablink3" class="ex-tablinks" href="#ex-tab3" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                                        data-classtoggle-target="#ex-tab3, #ex-tablink3" 
+                                                                        data-classtoggle-trigger-activeclass="--active">Link 3</a>,
+                <a id="ex-tablink4" class="ex-tablinks" href="#ex-tab4" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                                        data-classtoggle-target="#ex-tab4, #ex-tablink4" 
+                                                                        data-classtoggle-trigger-activeclass="--active">Link 4</a>,
+                <a id="ex-tablink5" class="ex-tablinks" href="#ex-tab5" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                                        data-classtoggle-target="#ex-tab5, #ex-tablink5" 
+                                                                        data-classtoggle-trigger-activeclass="--active">Link 5</a>
+            </p>
+
+            <div id="ex-tabs-targets">
+                <div class="target ex-targets ex-tabs" id="ex-tab1">Tab 1</div>
+                <div class="target ex-targets ex-tabs" id="ex-tab2">Tab 2</div>
+                <div class="target ex-targets ex-tabs" id="ex-tab3">Tab 3</div>
+                <div class="target ex-targets ex-tabs" id="ex-tab4">Tab 4</div>
+                <div class="target ex-targets ex-tabs" id="ex-tab5">Tab 5</div>
+            </div>
+
+            <p>Code:</p>
+            <pre>&lt;p&gt;
+    &lt;a id="ex-tablink1" class="ex-tablinks" href="#ex-tab1" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                            data-classtoggle-trigger-activeclass="--active"&gt;Link 1&lt;/a&gt;,
+    &lt;a id="ex-tablink2" class="ex-tablinks" href="#ex-tab2" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                            data-classtoggle-trigger-activeclass="--active"&gt;Link 2&lt;/a&gt;,
+    &lt;a id="ex-tablink3" class="ex-tablinks" href="#ex-tab3" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                            data-classtoggle-trigger-activeclass="--active"&gt;Link 3&lt;/a&gt;,
+    &lt;a id="ex-tablink4" class="ex-tablinks" href="#ex-tab4" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                            data-classtoggle-trigger-activeclass="--active"&gt;Link 4&lt;/a&gt;,
+    &lt;a id="ex-tablink5" class="ex-tablinks" href="#ex-tab5" data-classtoggle-class="++active" data-classtoggle-trigger-selector=".ex-tabs, .ex-tablinks" 
+                                                            data-classtoggle-trigger-activeclass="--active"&gt;Link 5&lt;/a&gt;
+&lt;/p&gt;
+
+&lt;div id="ex-tabs-targets"&gt;
+    &lt;div class="target ex-targets ex-tabs" id="ex-tab1"&gt;Tab 1&lt;/div&gt;
+    &lt;div class="target ex-targets ex-tabs" id="ex-tab2"&gt;Tab 2&lt;/div&gt;
+    &lt;div class="target ex-targets ex-tabs" id="ex-tab3"&gt;Tab 3&lt;/div&gt;
+    &lt;div class="target ex-targets ex-tabs" id="ex-tab4"&gt;Tab 4&lt;/div&gt;
+    &lt;div class="target ex-targets ex-tabs" id="ex-tab5"&gt;Tab 5&lt;/div&gt;
+&lt;/div&gt;</pre>
+   
         </div> <!-- /container -->
         
         <!-- All scripts (that can) should go at the bottom to improve load times -->
